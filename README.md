@@ -1,4 +1,3 @@
-# BLACKPIGEONS
 # BLACKPIGEONS Free Education Hub 🕊️
 
 Welcome to **BLACKPIGEONS**, a community-driven initiative to provide free educational resources for everyone. Together, we believe in democratizing knowledge.
