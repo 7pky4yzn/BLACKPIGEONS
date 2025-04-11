@@ -68,14 +68,33 @@ Apple’s restrictions prevent torrent clients like qBittorrent from being avail
 
 ---
 
-## Step 4: Verifying and Accessing Files  
+## Step 4: Understanding Seeding  
+
+**What is Seeding?**  
+Seeding is the process of sharing the downloaded file with others in the torrent network. Once your download is complete, your torrent client will automatically begin seeding. This ensures others can also access the file.  
+
+**Should You Seed?**  
+- **If you’re on a mobile connection or have limited internet bandwidth**:  
+  - Avoid seeding to conserve data.  
+  - Open your torrent client’s settings and stop seeding after your download is complete.  
+- **If you’re on unlimited or stable internet**:  
+  - **Please seed the files** to help others in the network.  
+  - The more seeders there are, the faster others can download the files.  
+
+To manually stop seeding:  
+- In qBittorrent, right-click the torrent and select **Pause** or **Delete Torrent (but not the data)**.  
+- In mobile apps, go to the torrent file, and disable seeding in the settings or delete the torrent entry.  
+
+---
+
+## Step 5: Verifying and Accessing Files  
 
 - Once the download completes, files will be available in your default download directory.  
 - Verify the integrity of the files to ensure a successful download.  
 
 ---
 
-## Step 5: Safety and Privacy Recommendations  
+## Step 6: Safety and Privacy Recommendations  
 
 1. **Use a VPN**:  
    - To ensure anonymity while downloading torrents, use a reliable VPN service.  
