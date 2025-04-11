@@ -7,7 +7,7 @@ BLACKPIGEONS exists for one purpose: to dismantle barriers to knowledge. We reje
 ## Structure  
 This repository is organized into the following categories:  
 
-- **[Computer Science](./MEGATHREAD)** 
+- **[MEGATHREAD](./MEGATHREAD)** 
 
 ---  
 
