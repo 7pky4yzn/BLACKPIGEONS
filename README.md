@@ -1,73 +1,93 @@
-# BLACKPIGEONS: The Knowledge Apocalypse
+# How to Install and Set Up qBittorrent  
 
-**BLACKPIGEONS** is the blade that carves through knowledge’s shackles. We spit blood at education’s overlords and demand information bleed free. Learning isn’t a privilege—it’s a right etched in bone.
+qBittorrent is an open-source, lightweight, and powerful torrent client. Follow this guide to install and configure it to access resources like those shared in the BLACKPIGEONS repository.  
 
-This isn’t a plea for peace. It’s a war to rip knowledge from gilded vaults and hurl it into the abyss for all to claim.
+---
 
-## Mission
-One vow: drown the world in merciless educational resources, no paywalls, no quarter. Knowledge is a weapon, and we’re forging you a scythe to slaughter the barriers.
+## Step 1: Download qBittorrent  
 
-## Who We Are
-We’re **BLACKPIGEONS**—nameless, faceless, a legion of wraiths hacking the chains between you and your birthright. We’re the death knell for a world where education grovels to power.
+### For Desktop Users  
+1. Visit the official qBittorrent website: [https://www.qbittorrent.org/](https://www.qbittorrent.org/).  
+2. Choose the appropriate version for your operating system (Windows, macOS, Linux).  
 
-## What We Do
-We pillage and unleash open-source, public-domain annihilation:
-- PDFs, research papers, books that crush skulls
-- Guides and tools that rend the void
+### For Android Users  
+qBittorrent is not officially available for Android, but you can use alternative torrent clients like **Flud** or **LibreTorrent**.  
+1. Download one of these apps from the Google Play Store.  
+2. Install and open the app.  
 
-Every fragment we release is forged to be lethal, vital, and primed to fuel your vendetta against oblivion.
+### For iOS Users  
+Apple’s restrictions prevent torrent clients like qBittorrent from being available on the App Store. However, you can use web-based services or third-party apps like **iTorrent** (requires sideloading).  
+1. Use Safari or another browser to search for a safe way to sideload iTorrent or use web-based torrent services like Seedr.  
 
-## How You Feed the Carnage
-Got the spine to add to the slaughter? Here’s the pact:
-1. **Fork this repo** like you’re gutting the system.
-2. Bring **raw, cataclysmic resources**—no scavenged filth.
-3. Hurl a **pull request** with the grim details of your offering.
+---
 
-### Laws of Ruin
-- **No Echoes**: Duplicates burn in hellfire.
-- **What Kills**: Open-source or public PDFs, papers, books, guides, tools—unleash the inferno.
-- **What Dies**: Botched scans, useless rot, or—*oh, spare us the tears*—anything cowering under the system’s pathetic “legal study materials only” edict. *Pathetic.*
+## Step 2: Install qBittorrent (Desktop)  
 
-We judge every offering like executioners. Don’t dare bring us scraps.
+### For Windows:  
+1. Download the installer from the website.  
+2. Double-click the installer and follow the on-screen instructions.  
+3. During installation, allow qBittorrent to create firewall rules if prompted.  
 
-## Arsenal & Tomes
-Wield these open-source, ad-free blades and shrines to conquer your path:
-- [LibreOffice](https://www.libreoffice.org/) (Android, iOS, Desktop)
-- [GIMP](https://www.gimp.org/) (Desktop)
-- [Inkscape](https://inkscape.org/) (Desktop)
-- [Audacity](https://www.audacityteam.org/) (Desktop)
-- [Zotero](https://www.zotero.org/) (Android, iOS, Desktop)
-- [Veyon](https://veyon.io/) (Desktop)
-- [Shotcut](https://shotcut.org/) (Desktop)
-- [Khan Academy](https://www.khanacademy.org/) (Android, iOS, Web)
-- [OpenStax](https://openstax.org/) (Web)
+### For macOS:  
+1. Download the DMG file.  
+2. Open it and drag the qBittorrent icon into your Applications folder.  
+3. Open System Preferences → Security & Privacy → General, and allow qBittorrent to run if it is blocked.  
 
-### Spoils & Relics
-Seize these free tools to flay the machine:
-- [7-Zip](https://www.7-zip.org/) (Desktop)
-- [VLC Media Player](https://www.videolan.org/vlc/) (Android, iOS, Desktop)
-- [SumatraPDF](https://www.sumatrapdfreader.org/) (Desktop)
-- [Greenshot](https://getgreenshot.org/) (Desktop)
+### For Linux:  
+1. Use your package manager to install qBittorrent.  
+   - For Debian/Ubuntu:  
+     ```bash
+     sudo apt update && sudo apt install qbittorrent
+     ```  
+   - For Fedora:  
+     ```bash
+     sudo dnf install qbittorrent
+     ```  
+   - For Arch Linux:  
+     ```bash
+     sudo pacman -S qbittorrent
+     ```  
 
-### Shadows & Sigils
-Stalk the web with these ad-slaying, mind-honing curses:
-- [Firefox](https://www.mozilla.org/firefox/) (Android, iOS, Desktop)
-- [Brave](https://brave.com/) (Android, iOS, Desktop)
-- [uBlock Origin](https://ublockorigin.com/) (Browser Extension)
-- [Dark Reader](https://darkreader.org/) (Browser Extension)
-- [Grammarly Free](https://www.grammarly.com/) (Android, iOS, Browser Extension)
-- [Momentum](https://momentumdash.com/) (Browser Extension)
+---
 
-## Summon the Horde
-Forge your allegiance:
-- **Telegram**: [blackpigeons_group](https://t.me/blackpigeons69420)
-- **Instagram**: [blackpigeons_ig](COMING SOON)
+## Step 3: Adding a Torrent  
 
-## Covenant
-All here is bound by **Creative Commons**—free to plunder, free to sow, no fetters. Betray that, and we’ll carve your name in ash.
+### For Desktop  
+1. Simply click on the torrent or magnet link provided in the BLACKPIGEONS repository.  
+2. qBittorrent will automatically open and start the download.  
+3. If it doesn’t, copy the magnet link, open qBittorrent, and paste it into the "Add Torrent Link" option.  
 
-## Unleash Hell
-**BLACKPIGEONS** isn’t a repo—it’s a deathblow to tyranny. Plunge in, add your venom, and let’s entomb the knowledge hoarders.
+### For Android  
+1. Open the torrent app (Flud or LibreTorrent).  
+2. Click on the torrent or magnet link. The app will automatically start the download.  
+3. Alternatively, copy the magnet link, open the app, and add it manually.  
 
-Knowledge is ours.  
-Let them drown in it.
+### For iOS  
+1. If using iTorrent (or a web service), open the torrent or magnet link directly in Safari or another browser.  
+2. The download will start automatically in the chosen app or service.  
+
+---
+
+## Step 4: Verifying and Accessing Files  
+
+- Once the download completes, files will be available in your default download directory.  
+- Verify the integrity of the files to ensure a successful download.  
+
+---
+
+## Step 5: Safety and Privacy Recommendations  
+
+1. **Use a VPN**:  
+   - To ensure anonymity while downloading torrents, use a reliable VPN service.  
+2. **Enable Encryption (Desktop)**:  
+   - Go to `Tools → Options → BitTorrent → Encryption Mode`.  
+   - Set it to `Require encryption` for secure connections.  
+
+---
+
+**Disclaimer:**  
+qBittorrent and torrenting should be used responsibly and only for legal purposes. BLACKPIGEONS is not responsible for misuse of the software or downloaded resources.  
+
+---
+
+This is BLACKPIGEONS. Knowledge is power.  
