@@ -7,17 +7,7 @@ BLACKPIGEONS exists for one purpose: to dismantle barriers to knowledge. We reje
 ## Structure  
 This repository is organized into the following categories:  
 
-- **[Computer Science](./Computer_Science)**  
-  Algorithms, programming, networks, and systems.  
-
-- **[Mathematics](./Mathematics)**  
-  Theory, applied math, and advanced research.  
-
-- **[Literature](./Literature)**  
-  Classical works, poetry, and critical analyses.  
-
-- **[Science](./Science)**  
-  Physics, chemistry, biology, and interdisciplinary studies.  
+- **[Computer Science](./MEGATHREAD)** 
 
 ---  
 
