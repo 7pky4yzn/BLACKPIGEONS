@@ -1,59 +1,73 @@
-# BLACKPIGEONS: The Free Knowledge Initiative
+# BLACKPIGEONS: The Knowledge Apocalypse
 
-**BLACKPIGEONS** exists to dismantle barriers to knowledge. We reject the gatekeeping of education and stand for unrestricted access to information. Education is a right, not a privilege.
+**BLACKPIGEONS** is the blade that carves through knowledge’s shackles. We spit blood at education’s overlords and demand information bleed free. Learning isn’t a privilege—it’s a right etched in bone.
 
-This initiative is a movement to reclaim knowledge, ensuring it is universally accessible and never commodified or restricted.
+This isn’t a plea for peace. It’s a war to rip knowledge from gilded vaults and hurl it into the abyss for all to claim.
 
----
-
-## Objective
-Our mission is simple: to make high-quality educational resources available to everyone, everywhere. We believe knowledge belongs to all, and we are committed to breaking down the walls that limit access to learning.
-
----
+## Mission
+One vow: drown the world in merciless educational resources, no paywalls, no quarter. Knowledge is a weapon, and we’re forging you a scythe to slaughter the barriers.
 
 ## Who We Are
-We are **BLACKPIGEONS**—a collective with no names, no faces, only a shared purpose. Our mission is to eliminate barriers between people and knowledge, fostering a world where education is free and unrestricted.
-
----
+We’re **BLACKPIGEONS**—nameless, faceless, a legion of wraiths hacking the chains between you and your birthright. We’re the death knell for a world where education grovels to power.
 
 ## What We Do
-We curate and share open-source, publicly accessible resources, including:
-- PDFs, research papers, and books
-- Guides, tools, and other educational materials
+We pillage and unleash open-source, public-domain annihilation:
+- PDFs, research papers, books that crush skulls
+- Guides and tools that rend the void
 
-All resources are carefully reviewed to meet the highest standards of quality and relevance, ensuring they align with our goal of liberating knowledge.
+Every fragment we release is forged to be lethal, vital, and primed to fuel your vendetta against oblivion.
 
----
+## How You Feed the Carnage
+Got the spine to add to the slaughter? Here’s the pact:
+1. **Fork this repo** like you’re gutting the system.
+2. Bring **raw, cataclysmic resources**—no scavenged filth.
+3. Hurl a **pull request** with the grim details of your offering.
 
-## Contribution Guidelines
-We welcome contributions from anyone who shares our vision. To contribute:
-1. **Fork this repository**.
-2. Submit **high-quality, original resources** that are not already present in our archives.
-3. Create a **pull request** with detailed information about your submission.
+### Laws of Ruin
+- **No Echoes**: Duplicates burn in hellfire.
+- **What Kills**: Open-source or public PDFs, papers, books, guides, tools—unleash the inferno.
+- **What Dies**: Botched scans, useless rot, or—*oh, spare us the tears*—anything cowering under the system’s pathetic “legal study materials only” edict. *Pathetic.*
 
-### Submission Rules
-- **Originality**: Do not submit duplicates of existing resources.
-- **Allowed Content**: Open-source or publicly accessible materials, such as PDFs, research papers, books, guides, and tools.
-- **Prohibited Content**: Incomplete, poorly scanned, irrelevant, or unauthorized materials. (Note: Only submit legal study materials.)
+We judge every offering like executioners. Don’t dare bring us scraps.
 
-Submissions undergo strict review to ensure compliance with these standards.
+## Arsenal & Tomes
+Wield these open-source, ad-free blades and shrines to conquer your path:
+- [LibreOffice](https://www.libreoffice.org/) (Android, iOS, Desktop)
+- [GIMP](https://www.gimp.org/) (Desktop)
+- [Inkscape](https://inkscape.org/) (Desktop)
+- [Audacity](https://www.audacityteam.org/) (Desktop)
+- [Zotero](https://www.zotero.org/) (Android, iOS, Desktop)
+- [Veyon](https://veyon.io/) (Desktop)
+- [Shotcut](https://shotcut.org/) (Desktop)
+- [Khan Academy](https://www.khanacademy.org/) (Android, iOS, Web)
+- [OpenStax](https://openstax.org/) (Web)
 
----
+### Spoils & Relics
+Seize these free tools to flay the machine:
+- [7-Zip](https://www.7-zip.org/) (Desktop)
+- [VLC Media Player](https://www.videolan.org/vlc/) (Android, iOS, Desktop)
+- [SumatraPDF](https://www.sumatrapdfreader.org/) (Desktop)
+- [Greenshot](https://getgreenshot.org/) (Desktop)
 
-## Connect With Us
-Join our community and stay updated:
+### Shadows & Sigils
+Stalk the web with these ad-slaying, mind-honing curses:
+- [Firefox](https://www.mozilla.org/firefox/) (Android, iOS, Desktop)
+- [Brave](https://brave.com/) (Android, iOS, Desktop)
+- [uBlock Origin](https://ublockorigin.com/) (Browser Extension)
+- [Dark Reader](https://darkreader.org/) (Browser Extension)
+- [Grammarly Free](https://www.grammarly.com/) (Android, iOS, Browser Extension)
+- [Momentum](https://momentumdash.com/) (Browser Extension)
+
+## Summon the Horde
+Forge your allegiance:
 - **Telegram**: [blackpigeons_group](https://t.me/your-group-link)
 - **Instagram**: [blackpigeons_ig](https://instagram.com/your-ig-handle)
 
----
+## Covenant
+All here is bound by **Creative Commons**—free to plunder, free to sow, no fetters. Betray that, and we’ll carve your name in ash.
 
-## License
-All materials in this repository are distributed under the **Creative Commons License**, ensuring they remain free and accessible to all. Redistribution is permitted as long as it adheres to these principles.
+## Unleash Hell
+**BLACKPIGEONS** isn’t a repo—it’s a deathblow to tyranny. Plunge in, add your venom, and let’s entomb the knowledge hoarders.
 
----
-
-## Join the Movement
-**BLACKPIGEONS** is more than a repository—it’s a call to action. Explore, contribute, and help us liberate knowledge for everyone.
-
-The knowledge belongs to all.  
-Let the work speak for itself.
+Knowledge is ours.  
+Let them drown in it.
