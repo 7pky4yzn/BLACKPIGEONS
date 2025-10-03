@@ -3,287 +3,377 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BLACKPIGEONS — Archive UI (Monochrome)</title>
-<style>
-  :root{
-    --bg:#111213;
-    --panel:#191a1c;
-    --accent:#e7e7e7;
-    --muted:#bdbdbd;
-    --danger:#e15a5a;
-    --danger-bg:rgba(225,90,90,0.12);
-    --danger-light:#ffb3b3;
+<title>BLACKPIGEONS — Archive UI (Mono, Depth, Light/Dark, Optimal Layout)</title>
+<style id="theme-style">
+  :root {
+    /* Dark mode variables */
+    --bg: #080b12;
+    --panel: #10131c;
+    --accent: #f6faff;
+    --muted: #a3adc3;
+    --danger: #ff5b5b;
+    --danger-light: #ffb3b3;
     --glass: rgba(255,255,255,0.025);
-    --mono: "Lucida Console", Monaco, monospace;
-    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --border:#232323;
-    --shadow: rgba(0,0,0,0.10);
-    --table-row:#18191a;
-    --tag-bg:rgba(255,255,255,0.03);
-    --modal-bg:rgba(0,0,0,0.82);
+    --mono: 'JetBrains Mono', 'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'DejaVu Sans Mono', 'Lucida Console', 'Monaco', 'monospace';
+    --shadow: 0 6px 40px #000c, 0 1.5px 0 #1a1d22;
+    --border: #22283d;
+    --table-row: #181c2a;
+    --tag-bg: rgba(50,60,90,0.13);
+    --modal-bg: rgba(18,21,33,0.96);
+    --card-glass: rgba(30,33,50,0.98);
+    --input-bg: #141b29;
+    --input-border: #232843;
+    --action-bg: #171e29;
+    --action-hover: #d6e6ff;
+    --action-hover-text: #212c44;
+    --radius: 12px;
+    --gap: 18px;
+    --pad-main: 34px;
+    --pad-table-cell: 13px;
+    --pad-header: 20px;
+    --pad-footer: 20px;
+    --badge-pad: 8px 14px;
   }
-  html,body{
-    height:100%;
+  html[data-theme='light'] {
+    --bg: #f7f8fc;
+    --panel: #fff;
+    --accent: #0d2244;
+    --muted: #657394;
+    --danger: #e03a3a;
+    --danger-light: #e68d8d;
+    --glass: rgba(0,0,0,0.01);
+    --shadow: 0 6px 32px #b7bedb44, 0 1.5px 0 #e9edf7;
+    --border: #e1e4ee;
+    --table-row: #f4f7fb;
+    --tag-bg: rgba(33,50,97,0.07);
+    --modal-bg: rgba(250,252,255,0.98);
+    --card-glass: #fff;
+    --input-bg: #f1f4fa;
+    --input-border: #d4d8e2;
+    --action-bg: #eaf0fb;
+    --action-hover: #0d2244;
+    --action-hover-text: #f7f8fc;
+    --radius: 12px;
+    --gap: 18px;
+    --pad-main: 34px;
+    --pad-table-cell: 13px;
+    --pad-header: 20px;
+    --pad-footer: 20px;
+    --badge-pad: 8px 14px;
+  }
+  html,body {
+    min-height:100%;
     margin:0;
-    background:linear-gradient(180deg,#111213 0%,var(--bg) 60%);
-    color:var(--accent);
-    font-family: var(--sans);
-    font-size:15px;
+    background: var(--bg);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size:16px;
     letter-spacing:0.01em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    transition: background .35s, color .18s;
   }
-  .wrap{
-    max-width:1040px;
-    margin:32px auto;
-    padding:32px 24px 28px 24px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.01));
-    border-radius:12px;
-    box-shadow:0 8px 32px var(--shadow);
-    border:1.5px solid var(--border);
+  .wrap {
+    max-width:1100px;
+    margin:46px auto;
+    padding:var(--pad-main) var(--pad-main) var(--pad-main) var(--pad-main);
+    background: var(--panel);
+    border-radius:var(--radius);
+    box-shadow: var(--shadow);
+    border:1.8px solid var(--border);
+    transition: background .35s, box-shadow .18s, border-color .2s;
   }
-  header{
+  header {
     display:flex;
-    gap:20px;
-    align-items:center;
-    margin-bottom:18px;
-    padding-bottom:2px;
+    flex-wrap:wrap;
+    gap:var(--gap);
+    align-items:flex-end;
+    margin-bottom:var(--gap);
+    padding-bottom:var(--pad-header);
     border-bottom:1px solid var(--border);
   }
-  .logo{
+  .logo {
     font-family:var(--mono);
     font-weight:700;
-    font-size:22px;
+    font-size:24px;
     color:var(--accent);
     display:flex;
     align-items:center;
-    gap:10px;
-    letter-spacing:0.03em;
+    gap:12px;
+    letter-spacing:0.04em;
     user-select:none;
+    padding-bottom: 3px;
   }
-  .logo .dot{
-    width:12px;
-    height:12px;
+  .logo .dot {
+    width:13px;
+    height:13px;
     background:var(--accent);
     border-radius:3px;
-    box-shadow:0 0 8px var(--accent);
-    opacity:0.75;
+    box-shadow:0 0 10px #3b62ff55;
+    opacity: 0.8;
+    margin-right:3px;
   }
-  .sub{
+  .sub {
     color:var(--muted);
     font-size:13px;
     font-family:var(--mono);
-    margin-top:2px;
-    letter-spacing:0.01em;
+    margin-left: 2px;
+    margin-bottom: 3px;
   }
-  .controls{
+  .controls {
     margin-left:auto;
     display:flex;
-    gap:10px;
+    gap:13px;
     align-items:center;
+    flex-wrap:wrap;
   }
-  input.search{
-    background:var(--glass);
-    border:1.5px solid var(--border);
+  input.search {
+    background:var(--input-bg);
+    border:1.6px solid var(--input-border);
     color:var(--accent);
-    padding:10px 14px;
-    border-radius:7px;
+    padding:10px 17px;
+    border-radius:8px;
     outline:none;
-    width:310px;
+    width:270px;
     font-family:var(--mono);
-    font-size:15px;
-    transition:border-color .14s;
+    font-size:16px;
+    transition:border-color .13s, background .13s;
   }
-  input.search:focus{
+  input.search:focus {
     border-color:var(--accent);
-    background:rgba(255,255,255,0.03);
+    background:var(--glass);
   }
-  select{
-    background:transparent;
-    border:1.5px solid var(--border);
+  select {
+    background:var(--input-bg);
+    border:1.6px solid var(--input-border);
     color:var(--muted);
-    padding:10px 10px;
-    border-radius:7px;
+    padding:10px 16px;
+    border-radius:8px;
     font-family:var(--mono);
-    font-size:15px;
+    font-size:16px;
     transition:border-color .13s;
     cursor:pointer;
+    min-width:120px;
   }
-  select:focus{
+  select:focus {
     border-color:var(--accent);
     outline:none;
   }
-  table{
+  .theme-toggle {
+    background: var(--input-bg);
+    border: 1.6px solid var(--input-border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: border-color .13s, background .13s, color .13s;
+    margin-left: 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .theme-toggle:hover, .theme-toggle:focus {
+    border-color:var(--accent);
+    color:var(--accent);
+    background:var(--tag-bg);
+    outline: none;
+  }
+  .theme-toggle .sun, .theme-toggle .moon {
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  main {
+    margin-top: var(--gap);
+    margin-bottom: var(--gap);
+  }
+  table {
     width:100%;
-    border-collapse:collapse;
-    margin-top:16px;
-    font-size:15px;
+    border-collapse:separate;
+    border-spacing: 0;
+    margin-top:0;
+    font-size:16px;
     font-family:var(--mono);
     background:transparent;
+    box-shadow: 0 2px 18px #0003;
+    border-radius:var(--radius);
+    overflow: hidden;
   }
-  thead th{
+  thead th {
     color:var(--muted);
     text-align:left;
-    padding:12px 8px 8px 8px;
-    border-bottom:1.5px solid var(--border);
+    padding:var(--pad-table-cell) 11px;
+    border-bottom:1.6px solid var(--border);
     font-weight:700;
-    letter-spacing:0.04em;
+    background:transparent;
     font-size:15px;
+    font-family:var(--mono);
+    letter-spacing: 0.01em;
   }
-  tbody tr{
-    transition:background .12s;
+  tbody tr {
+    transition:background .13s;
     background:transparent;
   }
-  tbody tr:hover{
+  tbody tr:hover {
     background:var(--table-row);
   }
-  td{
-    padding:13px 8px 13px 8px;
+  td {
+    padding:var(--pad-table-cell) 11px;
     border-bottom:1px solid var(--border);
-    vertical-align:top;
+    vertical-align:middle;
+    background:transparent;
+    font-family:var(--mono);
   }
-  .title{
+  .title {
     color:var(--accent);
+    font-weight:700;
     font-family:var(--mono);
-    font-weight:600;
-    letter-spacing:0.01em;
-    font-size:15px;
-    transition: color .16s;
+    font-size:17px;
+    margin-bottom: 2px;
+    letter-spacing: 0.01em;
+    line-height: 1.22;
+    word-break:break-word;
+    max-width: 99vw;
   }
-  .title.incomplete {
-    color: var(--danger-light);
-    text-shadow: 0 0 2px var(--danger-bg);
-  }
-  .meta{
+  .title.incomplete {color:var(--danger-light);}
+  .meta {
     color:var(--muted);
-    font-size:12px;
+    font-size:13px;
     font-family:var(--mono);
-    margin-top:2px;
-    letter-spacing:0.02em;
+    margin-top: 2px;
+    margin-bottom: 0;
+    line-height: 1.45;
+    word-break:break-word;
+    max-width: 99vw;
   }
-  .tag{
+  .tag {
     display:inline-block;
-    padding:3px 10px;
+    padding:3px 13px;
     border-radius:999px;
     background:var(--tag-bg);
     color:var(--muted);
     font-size:12px;
+    margin-right:9px;
     font-family:var(--mono);
-    margin-right:5px;
-    margin-bottom:1px;
-    letter-spacing:0.04em;
+    margin-bottom: 1px;
   }
   .actions {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 0;
+    margin: 0;
   }
   .actions a,
-  .actions .disabled-btn{
-    background:var(--tag-bg);
-    padding:7px 13px;
+  .actions .disabled-btn {
+    background:var(--action-bg);
+    padding:10px 20px;
     border-radius:7px;
     color:var(--muted);
     text-decoration:none;
-    border:1px solid var(--border);
-    font-family:var(--mono);
-    font-size:13px;
-    transition:background .13s, color .13s;
-    display:inline-block;
+    border:1.6px solid var(--input-border);
     margin: 0 !important;
-    pointer-events: auto;
-    opacity: 1;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    font-family:var(--mono);
+    font-size: 15px;
+    min-width: 80px;
+    text-align: center;
+    transition: background .13s, color .13s, border-color .13s;
+    font-weight: 700;
+    letter-spacing: 0.01em;
   }
   .actions a:hover{
-    background:var(--accent);
-    color:var(--bg);
+    background:var(--action-hover);
+    color:var(--action-hover-text);
     border-color:var(--accent);
   }
   .actions .disabled-btn {
     color: var(--danger-light);
-    border-color: var(--danger-bg);
-    background: var(--danger-bg);
-    opacity: 0.6;
+    border-color: var(--danger);
+    background: #1a0909;
+    opacity: 0.7;
     cursor: not-allowed;
     pointer-events: none;
     text-decoration:line-through;
   }
-  .seed{color:#bdbdbd;font-weight:700}
-  .leech{color:#bababa;font-weight:700}
+  .actions a:first-child {margin-right:0;}
   footer{
     color:var(--muted);
-    font-size:13px;
-    margin-top:16px;
+    font-size:14px;
+    margin-top:var(--gap);
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding-top:13px;
-    border-top:1px solid var(--border);
+    padding-top:var(--pad-footer);
+    border-top:1.6px solid var(--border);
     font-family:var(--mono);
-    letter-spacing:0.01em;
+    background: transparent;
+    gap: 15px;
   }
   .badge{
-    padding:8px 12px;
-    border-radius:7px;
+    padding:var(--badge-pad);
+    border-radius:8px;
     background:var(--tag-bg);
-    font-size:13px;
+    font-size:14px;
     color:var(--muted);
     font-family:var(--mono);
-    margin-bottom:1px;
+    margin-right: 12px;
   }
-  /* modal */
   .modal{
-    position:fixed;
-    inset:0;
-    background:var(--modal-bg);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:32px 10px;
-    z-index:999;
+    position:fixed;inset:0;background:var(--modal-bg);display:none;align-items:center;justify-content:center;padding:18px;z-index:999
   }
   .card{
     width:100%;
-    max-width:1040px;
-    background:var(--panel);
-    border-radius:10px;
-    box-shadow:0 12px 48px var(--shadow);
-    overflow:hidden;
-    border:1.5px solid var(--border);
+    max-width:1100px;
+    background:var(--card-glass);
+    border-radius:14px;
+    box-shadow:0 10px 40px #000a;
+    overflow:hidden
   }
   .card .head{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:14px 19px;
-    border-bottom:1px solid var(--border);
-    background:var(--panel);
+    padding:18px 30px;
+    border-bottom:1.5px solid var(--border);
+    font-family:var(--mono);
+    gap: 12px;
+    font-size: 17px;
   }
-  .viewer{
-    height:70vh;
-    border:0;
-    width:100%;
-    background:#191a1b;
+  .viewer{height:70vh;border:0;width:100%;background:var(--panel);}
+  @media (max-width:1100px){
+    .wrap {padding:14px 2vw;}
+    .card{max-width:99vw;}
+    .card .head{padding:14px 2vw;}
+    .badge{margin-right: 3px;}
   }
   @media (max-width:720px){
-    .wrap{padding:15px 2vw;}
-    input.search{width:100%; min-width:0;}
-    header{flex-direction:column;align-items:flex-start;gap:10px;}
-    .controls{width:100%;flex-wrap:wrap;}
-    table{font-size:13px;}
-    thead th, td{font-size:13px;}
+    input.search{width:100%}
+    header{flex-direction:column;align-items:flex-start;gap:10px;padding-bottom:12px;}
+    .controls{margin-left:0;}
+    .actions{gap:7px;}
+    .wrap{padding:8px 1vw;}
     .card{max-width:99vw;}
-    .actions {flex-direction: column; gap: 6px;}
+    .card .head{padding:10px 2vw;}
+    table{font-size:13px;}
+    .badge{margin-right: 0;}
+    .title{font-size:14px;}
+    .actions a, .actions .disabled-btn{padding:8px 8px;min-width:65px;}
   }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="logo"><span class="dot"></span> BLACKPIGEONS</div>
     <div>
-      <div class="sub">.</div>
+      <div class="sub">Archive UI — retro listing • For legal/public-domain content only</div>
     </div>
     <div class="controls">
       <input id="q" class="search" placeholder="Search title, author, tag..." />
@@ -293,6 +383,10 @@
         <option value="video">Video</option>
         <option value="zip">Archive</option>
       </select>
+      <button id="theme-toggle" class="theme-toggle" title="Toggle light/dark mode">
+        <span class="moon" style="display:inline;">🌙</span>
+        <span class="sun" style="display:none;">☀️</span>
+      </button>
     </div>
   </header>
 
@@ -314,8 +408,8 @@
   </main>
 
   <footer>
-    <div class="badge">.</div>
-    <div class="sub">Built by 7pky4yzn</div>
+    <div class="badge">Serve only files you own or are public domain / CC</div>
+    <div class="sub">Built for GitHub Pages • Internet Archive friendly</div>
   </footer>
 </div>
 
@@ -323,13 +417,13 @@
 <div id="modal" class="modal" role="dialog" aria-hidden="true">
   <div class="card" role="document">
     <div class="head">
-      <div id="modalTitle" style="color:var(--accent);font-weight:700;font-family:var(--mono)">Viewer</div>
-      <div style="display:flex;gap:10px;align-items:center">
-        <a id="rawLink" class="actions" target="_blank" rel="noopener" style="margin-right:8px;color:var(--muted);text-decoration:none">Open raw</a>
+      <div id="modalTitle" style="color:var(--accent);font-weight:700">Viewer</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a id="rawLink" class="actions" target="_blank" rel="noopener" style="margin-right:10px;color:var(--muted);text-decoration:none">Open raw</a>
         <button id="close" class="small">Close</button>
       </div>
     </div>
-    <div id="modalBody" style="background:#191a1b;">
+    <div id="modalBody" style="background:var(--panel);">
       <!-- iframe / video injected -->
     </div>
   </div>
@@ -347,6 +441,9 @@ const modal = $('#modal');
 const modalBody = $('#modalBody');
 const modalTitle = $('#modalTitle');
 const rawLink = $('#rawLink');
+const themeToggle = $('#theme-toggle');
+const moonIcon = themeToggle.querySelector('.moon');
+const sunIcon = themeToggle.querySelector('.sun');
 
 let items = [];
 
@@ -354,7 +451,7 @@ let items = [];
 const sample = [
   {"id":"sample-pdf","title":"Sample Public Domain Book","author":"Various","size":"2.1 MB","type":"pdf","date":"2020-05-12","url":"https://archive.org/download/oliver_twist_0810_librivox/oliver_twist_0810.pdf","desc":"Public domain sample"},
   {"id":"sample-video","title":"Sample Lecture","author":"Nobody","size":"120 MB","type":"video","date":"2021-07-01","url":"https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4","desc":"Demo video (public domain style)"},
-  {"id":"broken-pdf","title":"Corrupted PDF File","author":"Unknown","size":"3 MB","type":"pdf","date":"2025-09-01","url":"https://example.com/badfile.pdf","desc":"File failed to upload","status":"error"}
+  {"id":"brokenfile","title":"Broken Example File","author":"Unknown","size":"0 MB","type":"pdf","date":"2025-10-01","url":"https://archive.org/download/nonexistent.pdf","desc":"This file is broken.","status":"error"}
 ];
 
 async function loadData(){
@@ -373,7 +470,7 @@ async function loadData(){
 function render(){
   const query = (q.value || '').trim().toLowerCase();
   const typeF = filterType.value;
-  // simple sort: newest first by date if present
+  // newest first by date if present
   const sorted = items.slice().sort((a,b)=>{
     if(a.date && b.date) return new Date(b.date) - new Date(a.date);
     return (a.title||'').localeCompare(b.title||'');
@@ -386,11 +483,11 @@ function render(){
       const hay = (it.title + ' ' + (it.author||'') + ' ' + (it.desc||'') + ' ' + (it.tags||'')).toLowerCase();
       if(!hay.includes(query)) continue;
     }
-    const status = (it.status || 'ok').toLowerCase();
-    const isIncomplete = status === 'error' || status === 'incomplete';
-    const titleClass = isIncomplete ? 'title incomplete' : 'title';
+    const status = (it.status || '').toLowerCase();
+    const isError = status === 'error' || status === 'incomplete';
+    const titleClass = "title" + (isError ? " incomplete" : "");
     let actionsHtml;
-    if(isIncomplete){
+    if(isError){
       actionsHtml = `
         <span class="disabled-btn">Download</span>
         <span class="disabled-btn">View</span>
@@ -410,14 +507,16 @@ function render(){
       <td>${escapeHtml(it.size || '—')}</td>
       <td>${escapeHtml((it.type||'').toUpperCase())}</td>
       <td>${escapeHtml(it.date || '—')}</td>
-      <td class="actions">
-        ${actionsHtml}
+      <td>
+        <div class="actions">
+          ${actionsHtml}
+        </div>
       </td>
     `;
     rows.appendChild(tr);
   }
 
-  // attach view handlers (only for enabled)
+  // attach view handlers
   $$('.view').forEach(a=>{
     a.addEventListener('click', e=>{
       e.preventDefault();
@@ -429,27 +528,18 @@ function render(){
 }
 
 function openViewer(it){
-  modalTitle.textContent = it.title + ' — ' + (it.author||'');
+  modalTitle.textContent = it.title + (it.author ? ' — ' + it.author : '');
   rawLink.href = it.url;
   rawLink.textContent = 'Open raw';
   modalBody.innerHTML = '';
 
   if(it.type === 'pdf'){
-    // show PDF via iframe, remove toolbars if possible
-    let pdfUrl = it.url;
-    if(pdfUrl.indexOf('#') === -1){
-      pdfUrl += '#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
-    }else{
-      pdfUrl += '&toolbar=0&navpanes=0&scrollbar=0&view=FitH';
-    }
     const ifr = document.createElement('iframe');
-    ifr.src = pdfUrl;
+    ifr.src = it.url;
     ifr.className = 'viewer';
     ifr.setAttribute('allowfullscreen','');
-    ifr.setAttribute('title','PDF viewer');
     modalBody.appendChild(ifr);
   } else if(it.type === 'video'){
-    // use HTML5 video
     const v = document.createElement('video');
     v.className = 'viewer';
     v.controls = true;
@@ -459,8 +549,7 @@ function openViewer(it){
     v.appendChild(src);
     modalBody.appendChild(v);
   } else {
-    // show a simple download link
-    modalBody.innerHTML = `<div style="padding:18px;color:var(--muted);font-family:var(--mono)">No inline viewer for this file type. <a href="${it.url}" target="_blank" rel="noopener">Open raw</a></div>`;
+    modalBody.innerHTML = `<div style="padding:18px;color:var(--muted)">No inline viewer for this file type. <a href="${it.url}" target="_blank" rel="noopener">Open raw</a></div>`;
   }
 
   modal.style.display = 'flex';
@@ -478,6 +567,32 @@ function closeModal(){
 q.addEventListener('input', render);
 filterType.addEventListener('change', render);
 
+// THEME TOGGLE
+function setTheme(mode) {
+  document.documentElement.setAttribute('data-theme', mode);
+  if (mode === 'light') {
+    sunIcon.style.display = 'inline';
+    moonIcon.style.display = 'none';
+    localStorage.setItem('theme', 'light');
+  } else {
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'inline';
+    localStorage.setItem('theme', 'dark');
+  }
+}
+// Detect preferred theme
+(function(){
+  let theme = localStorage.getItem('theme');
+  if (!theme) {
+    theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  setTheme(theme);
+})();
+themeToggle.addEventListener('click', function() {
+  setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
+// small helper to avoid XSS via inserted text
 function escapeHtml(s){
   if(!s) return '';
   return String(s).replace(/[&<>"']/g, function(m){
@@ -485,6 +600,7 @@ function escapeHtml(s){
   });
 }
 
+// initial load
 loadData();
 </script>
 </body>
