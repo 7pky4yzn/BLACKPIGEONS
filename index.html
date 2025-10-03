@@ -54,6 +54,9 @@
   body {
     background: var(--gradient), var(--bg);
     background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
   .wrap {
     max-width:var(--max-width);
@@ -64,6 +67,10 @@
     box-shadow: var(--shadow);
     border:1.8px solid var(--border);
     transition: background .35s, box-shadow .18s, border-color .2s;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
   }
   header {
     display:flex;
@@ -73,6 +80,7 @@
     margin-bottom:var(--gap);
     padding-bottom:var(--pad-header);
     border-bottom:1px solid var(--border);
+    background: transparent;
   }
   .logo {
     font-family:var(--mono);
@@ -139,6 +147,8 @@
     margin-bottom: var(--gap);
     width:100%;
     overflow-x:auto;
+    flex: 1 1 auto;
+    background: transparent;
   }
   table {
     width:100%;
@@ -224,18 +234,18 @@
   .actions {
     display: flex;
     flex-direction: row;
-    gap: clamp(4px,1vw,12px);
+    gap: clamp(8px, 2vw, 16px); /* Increased gap for better spacing */
     align-items: center;
     justify-content: flex-start;
     height: 100%;
     padding: 0;
     margin: 0;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
   .actions a,
   .actions .disabled-btn {
     background:var(--action-bg);
-    padding:clamp(7px,1.5vw,12px) clamp(10px,2vw,22px);
+    padding:clamp(7px,1.5vw,12px) clamp(16px,2vw,22px);
     border-radius:7px;
     color:var(--muted);
     text-decoration:none;
@@ -277,6 +287,7 @@
       gap: 7px;
       align-items: stretch;
       justify-content: center;
+      flex-wrap: nowrap;
     }
     .actions a,
     .actions .disabled-btn {
@@ -305,6 +316,9 @@
     gap: 15px;
     flex-wrap: wrap;
     word-break:break-word;
+    min-height: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
   .badge{
     padding:var(--badge-pad);
@@ -396,6 +410,29 @@
     table{font-size:12px;}
     .card {min-height:180px;}
     .viewer{min-height:80px;}
+  }
+  /* Fix sticky footers/headers for body and .wrap */
+  body, html {
+    height: 100%;
+    min-height: 100vh;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrap {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  main {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  footer {
+    flex-shrink: 0;
   }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
