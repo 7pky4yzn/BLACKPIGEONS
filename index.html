@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BLACKPIGEONS — Archive UI (Pirate‑bay inspired theme)</title>
+<style>
+  :root{
+    --bg:#07100b;
+    --panel:#081912;
+    --accent:#35ff6b;
+    --muted:#7fbfa0;
+    --danger:#ff5b5b;
+    --glass: rgba(255,255,255,0.03);
+    --mono: "Lucida Console", Monaco, monospace;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#00110a 0%,var(--bg) 60%);color:var(--accent);font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  .wrap{max-width:1100px;margin:26px auto;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
+  header{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+  .logo{font-family:var(--mono);font-weight:700;font-size:20px;color:var(--accent);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:10px;height:10px;background:var(--accent);border-radius:2px;box-shadow:0 0 10px rgba(53,255,107,0.15)}
+  .sub{color:var(--muted);font-size:12px}
+  .controls{margin-left:auto;display:flex;gap:8px;align-items:center}
+  input.search{background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:var(--accent);padding:8px 12px;border-radius:6px;outline:none;width:360px}
+  select, button.small{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px;border-radius:6px}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+  thead th{color:var(--muted);text-align:left;padding:10px 8px;border-bottom:1px dashed rgba(255,255,255,0.03);font-weight:600}
+  tbody tr{transition:background .13s}
+  tbody tr:hover{background:rgba(255,255,255,0.012)}
+  td{padding:10px 8px;border-bottom:1px dashed rgba(255,255,255,0.02)}
+  .title{color:var(--accent);font-weight:600}
+  .meta{color:var(--muted);font-size:12px}
+  .tag{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,0.25);color:var(--muted);font-size:12px;margin-right:6px}
+  .actions a{background:rgba(0,0,0,0.25);padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;border:1px solid rgba(255,255,255,0.02)}
+  .seed{color:#b8ffbf;font-weight:700}
+  .leech{color:#ffb3b3;font-weight:700}
+  footer{color:var(--muted);font-size:12px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,0.02)}
+  .badge{padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.02);font-size:12px;color:var(--muted)}
+  /* modal */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;padding:20px;z-index:999}
+  .card{width:100%;max-width:1100px;background:var(--panel);border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,0.7);overflow:hidden}
+  .card .head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.02)}
+  .viewer{height:70vh;border:0;width:100%}
+  @media (max-width:720px){
+    input.search{width:100%}
+    header{flex-direction:column;align-items:flex-start;gap:8px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><span class="dot"></span> BLACKPIGEONS</div>
+    <div>
+      <div class="sub">Archive UI — retro listing • For legal/public-domain content only</div>
+    </div>
+    <div class="controls">
+      <input id="q" class="search" placeholder="Search title, author, tag..." />
+      <select id="filterType" title="Filter type">
+        <option value="">All types</option>
+        <option value="pdf">PDF</option>
+        <option value="video">Video</option>
+        <option value="zip">Archive</option>
+      </select>
+      <button id="refresh" class="small">Reload</button>
+    </div>
+  </header>
+
+  <main>
+    <table id="list">
+      <thead>
+        <tr>
+          <th style="width:52%">Title</th>
+          <th style="width:18%">Size</th>
+          <th style="width:10%">Type</th>
+          <th style="width:10%">Date</th>
+          <th style="width:10%">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="rows">
+        <!-- rows injected -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <div class="badge">Serve only files you own or are public domain / CC</div>
+    <div class="sub">Built for GitHub Pages • Internet Archive friendly</div>
+  </footer>
+</div>
+
+<!-- modal viewer -->
+<div id="modal" class="modal" role="dialog" aria-hidden="true">
+  <div class="card" role="document">
+    <div class="head">
+      <div id="modalTitle" style="color:var(--accent);font-weight:700">Viewer</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <a id="rawLink" class="actions" target="_blank" rel="noopener" style="margin-right:8px;color:var(--muted);text-decoration:none">Open raw</a>
+        <button id="close" class="small">Close</button>
+      </div>
+    </div>
+    <div id="modalBody" style="background:#000;">
+      <!-- iframe / video injected -->
+    </div>
+  </div>
+</div>
+
+<script>
+/*
+  Sample files.json format (place next to index.html or update the fetch path):
+  [
+    {
+      "id":"python-basics",
+      "title":"Python Basics — Notes",
+      "author":"Ishit Singh",
+      "size":"12.4 MB",
+      "type":"pdf",
+      "date":"2025-08-12",
+      "url":"https://archive.org/download/BLACKPIGEONS-PythonBasics/python1.pdf",
+      "desc":"Intro to Python with exercises"
+    },
+    {
+      "id":"algebra-lecture1",
+      "title":"Algebra Lecture 1",
+      "author":"Prof A",
+      "size":"420 MB",
+      "type":"video",
+      "date":"2025-01-05",
+      "url":"https://archive.org/download/BLACKPIGEONS-AlgebraLecture/lecture1.mp4",
+      "desc":"Recorded class, 2h"
+    }
+  ]
+*/
+
+const DATA_SRC = './files.json'; // change if needed
+
+const $ = sel => document.querySelector(sel);
+const $$ = sel => document.querySelectorAll(sel);
+const rows = $('#rows');
+const q = $('#q');
+const filterType = $('#filterType');
+const modal = $('#modal');
+const modalBody = $('#modalBody');
+const modalTitle = $('#modalTitle');
+const rawLink = $('#rawLink');
+
+let items = [];
+
+// fallback sample if files.json missing
+const sample = [
+  {"id":"sample-pdf","title":"Sample Public Domain Book","author":"Various","size":"2.1 MB","type":"pdf","date":"2020-05-12","url":"https://archive.org/download/oliver_twist_0810_librivox/oliver_twist_0810.pdf","desc":"Public domain sample"},
+  {"id":"sample-video","title":"Sample Lecture","author":"Nobody","size":"120 MB","type":"video","date":"2021-07-01","url":"https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4","desc":"Demo video (public domain style)"}
+];
+
+async function loadData(){
+  try {
+    const r = await fetch(DATA_SRC, {cache:'no-store'});
+    if(!r.ok) throw new Error('no json');
+    items = await r.json();
+    if(!Array.isArray(items) || items.length===0) throw 'empty';
+  } catch(e){
+    console.warn('Could not load files.json — using sample data. Error:', e);
+    items = sample;
+  }
+  render();
+}
+
+function render(){
+  const query = (q.value || '').trim().toLowerCase();
+  const typeF = filterType.value;
+  // simple sort: newest first by date if present
+  const sorted = items.slice().sort((a,b)=>{
+    if(a.date && b.date) return new Date(b.date) - new Date(a.date);
+    return (a.title||'').localeCompare(b.title||'');
+  });
+
+  rows.innerHTML = '';
+  for(const it of sorted){
+    if(typeF && it.type !== typeF) continue;
+    if(query){
+      const hay = (it.title + ' ' + (it.author||'') + ' ' + (it.desc||'') + ' ' + (it.tags||'')).toLowerCase();
+      if(!hay.includes(query)) continue;
+    }
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>
+        <div class="title">${escapeHtml(it.title)}</div>
+        <div class="meta">${escapeHtml(it.author || '')} • <span class="tag">${escapeHtml(it.tags || it.type || '')}</span> ${escapeHtml(it.desc || '')}</div>
+      </td>
+      <td>${escapeHtml(it.size || '—')}</td>
+      <td>${escapeHtml((it.type||'').toUpperCase())}</td>
+      <td>${escapeHtml(it.date || '—')}</td>
+      <td class="actions">
+        <a href="${it.url}" target="_blank" rel="noopener">Download</a>
+        <a href="#" data-id="${it.id}" class="view">View</a>
+      </td>
+    `;
+    rows.appendChild(tr);
+  }
+
+  // attach view handlers
+  $$('.view').forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const id = a.getAttribute('data-id');
+      const it = items.find(x=>x.id===id);
+      if(it) openViewer(it);
+    });
+  });
+}
+
+function openViewer(it){
+  modalTitle.textContent = it.title + ' — ' + (it.author||'');
+  rawLink.href = it.url;
+  rawLink.textContent = 'Open raw';
+  modalBody.innerHTML = '';
+
+  if(it.type === 'pdf'){
+    // show PDF via iframe — Internet Archive typically serves PDFs directly
+    const ifr = document.createElement('iframe');
+    ifr.src = it.url;
+    ifr.className = 'viewer';
+    ifr.setAttribute('allowfullscreen','');
+    modalBody.appendChild(ifr);
+  } else if(it.type === 'video'){
+    // use HTML5 video
+    const v = document.createElement('video');
+    v.className = 'viewer';
+    v.controls = true;
+    const src = document.createElement('source');
+    src.src = it.url;
+    src.type = 'video/mp4';
+    v.appendChild(src);
+    modalBody.appendChild(v);
+    // autoplay muted preview if desired: v.play().catch(()=>{})
+  } else {
+    // show a simple download link
+    modalBody.innerHTML = `<div style="padding:18px;color:var(--muted)">No inline viewer for this file type. <a href="${it.url}" target="_blank" rel="noopener">Open raw</a></div>`;
+  }
+
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden','false');
+}
+
+$('#close').addEventListener('click',()=>closeModal());
+modal.addEventListener('click', e => { if(e.target===modal) closeModal(); });
+function closeModal(){
+  modal.style.display = 'none';
+  modalBody.innerHTML = '';
+  modal.setAttribute('aria-hidden','true');
+}
+
+q.addEventListener('input', render);
+filterType.addEventListener('change', render);
+$('#refresh').addEventListener('click', loadData);
+
+// small helper to avoid XSS via inserted text
+function escapeHtml(s){
+  if(!s) return '';
+  return String(s).replace(/[&<>"']/g, function(m){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]);
+  });
+}
+
+// initial load
+loadData();
+</script>
+</body>
+</html>
