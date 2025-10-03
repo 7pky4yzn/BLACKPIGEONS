@@ -3,82 +3,113 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BLACKPIGEONS Archive </title>
+<title>BLACKPIGEONS — Archive UI</title>
 <style>
-  :root {
-    --bg: #000;
-    --panel: #111;
-    --text: #ccc;
-    --accent: #ff3b3b; /* red for errors */
-    --muted: #888;
-    --mono: "Lucida Console", Monaco, monospace;
-    --glass: rgba(255,255,255,0.03);
-  }
-  html, body { margin:0; height:100%; background: var(--bg); color: var(--text); font-family: var(--mono); }
-  .wrap { max-width:1100px; margin:24px auto; padding:16px; background: var(--panel); border-radius:8px; }
-  header { display:flex; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
-  .logo { font-weight:700; font-size:20px; color:var(--text); }
-  .controls { margin-left:auto; display:flex; gap:8px; flex-wrap:wrap; }
-  input.search { background:var(--glass); border:1px solid #222; color:var(--text); padding:6px 10px; border-radius:6px; width:240px; }
-  table { width:100%; border-collapse:collapse; font-size:14px; }
-  thead th { text-align:left; padding:10px 8px; border-bottom:1px dashed #222; color:var(--muted); }
-  tbody tr { transition: background .1s; }
-  tbody tr:hover { background: rgba(255,255,255,0.05); }
-  td { padding:10px 8px; border-bottom:1px dashed #222; }
-  .title { font-weight:600; }
-  .meta { color: var(--muted); font-size:12px; }
-  .tag { display:inline-block; padding:2px 6px; border-radius:6px; background:#222; margin-right:4px; font-size:11px; }
-  .actions a { padding:4px 6px; border-radius:4px; color:var(--text); text-decoration:none; border:1px solid #222; font-size:12px; margin-right:4px; }
-  .error { color: var(--accent); font-weight:700; }
-  footer { color:var(--muted); font-size:12px; margin-top:12px; padding-top:12px; border-top:1px solid #222; display:flex; justify-content:space-between; }
-  /* modal */
-  .modal { position:fixed; inset:0; background: rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center; padding:20px; z-index:999; }
-  .card { width:100%; max-width:1000px; background:var(--panel); border-radius:8px; overflow:hidden; }
-  .card .head { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid #222; }
-  .viewer { height:70vh; width:100%; border:0; }
+:root {
+  --bg:#07100b;
+  --panel:#081912;
+  --accent:#35ff6b; /* normal file accent */
+  --muted:#7fbfa0;
+  --error:#ff3b3b; /* red for error files */
+  --glass: rgba(255,255,255,0.03);
+  --mono: "Lucida Console", Monaco, monospace;
+}
+
+html,body{height:100%;margin:0;background:linear-gradient(180deg,#00110a 0%,var(--bg) 60%);color:var(--accent);font-family:var(--mono);}
+.wrap{max-width:1100px;margin:26px auto;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
+header{display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.logo{font-family:var(--mono);font-weight:700;font-size:20px;color:var(--accent);display:flex;align-items:center;gap:8px}
+.logo .dot{width:10px;height:10px;background:var(--accent);border-radius:2px;box-shadow:0 0 10px rgba(53,255,107,0.15)}
+.sub{color:var(--muted);font-size:12px}
+.controls{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+input.search{background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:var(--accent);padding:8px 12px;border-radius:6px;outline:none;width:360px}
+select, button.small{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px;border-radius:6px}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+thead th{color:var(--muted);text-align:left;padding:10px 8px;border-bottom:1px dashed rgba(255,255,255,0.03);font-weight:600}
+tbody tr{transition:background .13s}
+tbody tr:hover{background:rgba(255,255,255,0.012)}
+td{padding:10px 8px;border-bottom:1px dashed rgba(255,255,255,0.02)}
+.title{color:var(--accent);font-weight:600}
+.meta{color:var(--muted);font-size:12px}
+.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,0.25);color:var(--muted);font-size:12px;margin-right:6px}
+.actions a{background:rgba(0,0,0,0.25);padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;border:1px solid rgba(255,255,255,0.02)}
+.error{color:var(--error); font-weight:700;}
+footer{color:var(--muted);font-size:12px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,0.02)}
+.badge{padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.02);font-size:12px;color:var(--muted)}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;padding:20px;z-index:999}
+.card{width:100%;max-width:1100px;background:var(--panel);border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,0.7);overflow:hidden}
+.card .head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.02)}
+.viewer{height:70vh;border:0;width:100%}
+@media (max-width:720px){
+  input.search{width:100%}
+  header{flex-direction:column;align-items:flex-start;gap:8px}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="logo">BLACKPIGEONS Archive</div>
+    <div class="logo"><span class="dot"></span> BLACKPIGEONS</div>
+    <div>
+      <div class="sub">Archive UI — retro listing • For legal/public-domain content only</div>
+    </div>
     <div class="controls">
-      <input id="q" class="search" placeholder="Search..." />
-      <button id="refresh">Reload</button>
+      <input id="q" class="search" placeholder="Search title, author, tag..." />
+      <select id="filterType" title="Filter type">
+        <option value="">All types</option>
+        <option value="pdf">PDF</option>
+        <option value="video">Video</option>
+        <option value="zip">Archive</option>
+      </select>
+      <button id="refresh" class="small">Reload</button>
     </div>
   </header>
+
   <main>
     <table id="list">
       <thead>
-        <tr><th>Title</th><th>Size</th><th>Type</th><th>Date</th><th>Actions</th></tr>
+        <tr>
+          <th style="width:52%">Title</th>
+          <th style="width:18%">Size</th>
+          <th style="width:10%">Type</th>
+          <th style="width:10%">Date</th>
+          <th style="width:10%">Actions</th>
+        </tr>
       </thead>
-      <tbody id="rows"></tbody>
+      <tbody id="rows">
+        <!-- rows injected -->
+      </tbody>
     </table>
   </main>
+
   <footer>
-    <div>Only legal / public-domain content</div>
-    <div>Monochrome theme with red accent for errors</div>
+    <div class="badge">Serve only files you own or are public domain / CC</div>
+    <div class="sub">Built for GitHub Pages • Internet Archive friendly</div>
   </footer>
 </div>
 
+<!-- modal viewer -->
 <div id="modal" class="modal" role="dialog" aria-hidden="true">
-  <div class="card">
+  <div class="card" role="document">
     <div class="head">
-      <div id="modalTitle">Viewer</div>
+      <div id="modalTitle" style="color:var(--accent);font-weight:700">Viewer</div>
       <div style="display:flex;gap:8px;align-items:center">
-        <a id="rawLink" target="_blank">Open raw</a>
-        <button id="close">Close</button>
+        <a id="rawLink" class="actions" target="_blank" rel="noopener" style="margin-right:8px;color:var(--muted);text-decoration:none">Open raw</a>
+        <button id="close" class="small">Close</button>
       </div>
     </div>
-    <div id="modalBody"></div>
+    <div id="modalBody" style="background:#000;"></div>
   </div>
 </div>
 
 <script>
 const DATA_SRC = './files.json';
 const $ = sel => document.querySelector(sel);
+const $$ = sel => document.querySelectorAll(sel);
 const rows = $('#rows');
 const q = $('#q');
+const filterType = $('#filterType');
 const modal = $('#modal');
 const modalBody = $('#modalBody');
 const modalTitle = $('#modalTitle');
@@ -86,39 +117,53 @@ const rawLink = $('#rawLink');
 
 let items = [];
 
+const sample = [
+  {"id":"sample-pdf","title":"Sample Public Domain Book","author":"Various","size":"2.1 MB","type":"pdf","date":"2020-05-12","desc":"Public domain sample"},
+  {"id":"sample-video","title":"Sample Lecture","author":"Nobody","size":"120 MB","type":"video","date":"2021-07-01","desc":"Demo video (public domain style)"},
+  {"id":"error-file","title":"Missing File","author":"Unknown","size":"0 MB","type":"pdf","date":"2023-03-01","desc":"Broken link","error":true}
+];
+
 async function loadData(){
-  try{
-    const r = await fetch(DATA_SRC,{cache:'no-store'});
-    if(!r.ok) throw 'no json';
+  try {
+    const r = await fetch(DATA_SRC, {cache:'no-store'});
+    if(!r.ok) throw new Error('no json');
     items = await r.json();
-  }catch(e){
-    console.warn('Could not load files.json — using sample', e);
-    items = [
-      {"id":"sample1","title":"Sample PDF","size":"1MB","type":"pdf","date":"2023-01-01","url":"https://archive.org/download/oliver_twist_0810_librivox/oliver_twist_0810.pdf"},
-      {"id":"sample2","title":"Broken Video","size":"0MB","type":"video","date":"2023-01-02","url":"https://archive.org/download/missingfile.mp4","error":true}
-    ];
+    if(!Array.isArray(items) || items.length===0) throw 'empty';
+  } catch(e){
+    console.warn('Could not load files.json — using sample data. Error:', e);
+    items = sample;
   }
   render();
 }
 
 function render(){
-  const query = (q.value||'').toLowerCase();
+  const query = (q.value || '').trim().toLowerCase();
+  const typeF = filterType.value;
+  const sorted = items.slice().sort((a,b)=>{
+    if(a.date && b.date) return new Date(b.date) - new Date(a.date);
+    return (a.title||'').localeCompare(b.title||'');
+  });
+
   rows.innerHTML = '';
-  items.forEach(it=>{
-    if(query && !(it.title.toLowerCase().includes(query))) return;
+  for(const it of sorted){
+    if(typeF && it.type !== typeF) continue;
+    if(query){
+      const hay = (it.title + ' ' + (it.author||'') + ' ' + (it.desc||'')).toLowerCase();
+      if(!hay.includes(query)) continue;
+    }
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="${it.error?'error':''}">${it.title}</td>
+      <td class="title ${it.error?'error':''}">${it.title}</td>
       <td>${it.size||'—'}</td>
-      <td>${it.type||'—'}</td>
+      <td>${(it.type||'—').toUpperCase()}</td>
       <td>${it.date||'—'}</td>
-      <td>
+      <td class="actions">
         <a href="${it.url}" target="_blank" class="${it.error?'error':''}">Download</a>
         <a href="#" data-id="${it.id}" class="view ${it.error?'error':''}">View</a>
       </td>
     `;
     rows.appendChild(tr);
-  });
+  }
 
   $$('.view').forEach(a=>{
     a.addEventListener('click',e=>{
@@ -134,7 +179,7 @@ function openViewer(it){
   modalTitle.textContent = it.title;
   rawLink.href = it.url;
   modalBody.innerHTML = '';
-  if(it.type==='pdf') {
+  if(it.type==='pdf'){
     const iframe = document.createElement('iframe');
     iframe.src = it.url;
     iframe.className='viewer';
@@ -147,15 +192,15 @@ function openViewer(it){
     v.appendChild(src);
     modalBody.appendChild(v);
   } else {
-    modalBody.innerHTML=`<div style="padding:18px;color:var(--text)">No viewer. <a href="${it.url}" target="_blank">Open raw</a></div>`;
+    modalBody.innerHTML=`<div style="padding:18px;color:var(--accent)">No viewer. <a href="${it.url}" target="_blank">Open raw</a></div>`;
   }
   modal.style.display='flex';
 }
 
 $('#close').addEventListener('click',()=>{modal.style.display='none'; modalBody.innerHTML='';});
 modal.addEventListener('click',e=>{if(e.target===modal) modal.style.display='none';});
-
 q.addEventListener('input',render);
+filterType.addEventListener('change',render);
 $('#refresh').addEventListener('click',loadData);
 
 loadData();
