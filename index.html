@@ -7,17 +7,19 @@
 <style>
   :root{
     --bg:#111213;
-    --panel:#18191a;
+    --panel:#191a1c;
     --accent:#e7e7e7;
     --muted:#bdbdbd;
     --danger:#e15a5a;
+    --danger-bg:rgba(225,90,90,0.12);
+    --danger-light:#ffb3b3;
     --glass: rgba(255,255,255,0.025);
-    --mono: 'JetBrains Mono', 'Fira Mono', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+    --mono: "Lucida Console", Monaco, monospace;
     --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --border:#313234;
-    --shadow: rgba(0,0,0,0.12);
-    --table-row:#191a1b;
-    --tag-bg:rgba(255,255,255,0.04);
+    --border:#232323;
+    --shadow: rgba(0,0,0,0.10);
+    --table-row:#18191a;
+    --tag-bg:rgba(255,255,255,0.03);
     --modal-bg:rgba(0,0,0,0.82);
   }
   html,body{
@@ -96,8 +98,7 @@
     border-color:var(--accent);
     background:rgba(255,255,255,0.03);
   }
-  select,
-  button.small{
+  select{
     background:transparent;
     border:1.5px solid var(--border);
     color:var(--muted);
@@ -108,8 +109,7 @@
     transition:border-color .13s;
     cursor:pointer;
   }
-  select:focus,
-  button.small:focus{
+  select:focus{
     border-color:var(--accent);
     outline:none;
   }
@@ -148,6 +148,11 @@
     font-weight:600;
     letter-spacing:0.01em;
     font-size:15px;
+    transition: color .16s;
+  }
+  .title.incomplete {
+    color: var(--danger-light);
+    text-shadow: 0 0 2px var(--danger-bg);
   }
   .meta{
     color:var(--muted);
@@ -168,7 +173,14 @@
     margin-bottom:1px;
     letter-spacing:0.04em;
   }
-  .actions a{
+  .actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+  .actions a,
+  .actions .disabled-btn{
     background:var(--tag-bg);
     padding:7px 13px;
     border-radius:7px;
@@ -177,17 +189,25 @@
     border:1px solid var(--border);
     font-family:var(--mono);
     font-size:13px;
-    margin-bottom:2px;
     transition:background .13s, color .13s;
     display:inline-block;
+    margin: 0 !important;
+    pointer-events: auto;
+    opacity: 1;
   }
   .actions a:hover{
     background:var(--accent);
     color:var(--bg);
     border-color:var(--accent);
   }
-  .actions a:first-child {
-    margin-right: 14px;
+  .actions .disabled-btn {
+    color: var(--danger-light);
+    border-color: var(--danger-bg);
+    background: var(--danger-bg);
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    text-decoration:line-through;
   }
   .seed{color:#bdbdbd;font-weight:700}
   .leech{color:#bababa;font-weight:700}
@@ -254,6 +274,7 @@
     table{font-size:13px;}
     thead th, td{font-size:13px;}
     .card{max-width:99vw;}
+    .actions {flex-direction: column; gap: 6px;}
   }
 </style>
 </head>
@@ -262,7 +283,7 @@
   <header>
     <div class="logo"><span class="dot"></span> BLACKPIGEONS</div>
     <div>
-      <div class="sub">Archive UI — retro listing • For legal/public-domain content only</div>
+      <div class="sub">.</div>
     </div>
     <div class="controls">
       <input id="q" class="search" placeholder="Search title, author, tag..." />
@@ -272,7 +293,6 @@
         <option value="video">Video</option>
         <option value="zip">Archive</option>
       </select>
-      <button id="refresh" class="small">Reload</button>
     </div>
   </header>
 
@@ -294,8 +314,8 @@
   </main>
 
   <footer>
-    <div class="badge">Serve only files you own or are public domain / CC</div>
-    <div class="sub">Built for GitHub Pages • Internet Archive friendly</div>
+    <div class="badge">.</div>
+    <div class="sub">Built by 7pky4yzn</div>
   </footer>
 </div>
 
@@ -316,32 +336,6 @@
 </div>
 
 <script>
-/*
-  Sample files.json format (place next to index.html or update the fetch path):
-  [
-    {
-      "id":"python-basics",
-      "title":"Python Basics — Notes",
-      "author":"Ishit Singh",
-      "size":"12.4 MB",
-      "type":"pdf",
-      "date":"2025-08-12",
-      "url":"https://archive.org/download/BLACKPIGEONS-PythonBasics/python1.pdf",
-      "desc":"Intro to Python with exercises"
-    },
-    {
-      "id":"algebra-lecture1",
-      "title":"Algebra Lecture 1",
-      "author":"Prof A",
-      "size":"420 MB",
-      "type":"video",
-      "date":"2025-01-05",
-      "url":"https://archive.org/download/BLACKPIGEONS-AlgebraLecture/lecture1.mp4",
-      "desc":"Recorded class, 2h"
-    }
-  ]
-*/
-
 const DATA_SRC = './files.json'; // change if needed
 
 const $ = sel => document.querySelector(sel);
@@ -359,7 +353,8 @@ let items = [];
 // fallback sample if files.json missing
 const sample = [
   {"id":"sample-pdf","title":"Sample Public Domain Book","author":"Various","size":"2.1 MB","type":"pdf","date":"2020-05-12","url":"https://archive.org/download/oliver_twist_0810_librivox/oliver_twist_0810.pdf","desc":"Public domain sample"},
-  {"id":"sample-video","title":"Sample Lecture","author":"Nobody","size":"120 MB","type":"video","date":"2021-07-01","url":"https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4","desc":"Demo video (public domain style)"}
+  {"id":"sample-video","title":"Sample Lecture","author":"Nobody","size":"120 MB","type":"video","date":"2021-07-01","url":"https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4","desc":"Demo video (public domain style)"},
+  {"id":"broken-pdf","title":"Corrupted PDF File","author":"Unknown","size":"3 MB","type":"pdf","date":"2025-09-01","url":"https://example.com/badfile.pdf","desc":"File failed to upload","status":"error"}
 ];
 
 async function loadData(){
@@ -391,24 +386,38 @@ function render(){
       const hay = (it.title + ' ' + (it.author||'') + ' ' + (it.desc||'') + ' ' + (it.tags||'')).toLowerCase();
       if(!hay.includes(query)) continue;
     }
+    const status = (it.status || 'ok').toLowerCase();
+    const isIncomplete = status === 'error' || status === 'incomplete';
+    const titleClass = isIncomplete ? 'title incomplete' : 'title';
+    let actionsHtml;
+    if(isIncomplete){
+      actionsHtml = `
+        <span class="disabled-btn">Download</span>
+        <span class="disabled-btn">View</span>
+      `;
+    }else{
+      actionsHtml = `
+        <a href="${escapeHtml(it.url)}" target="_blank" rel="noopener">Download</a>
+        <a href="#" data-id="${escapeHtml(it.id)}" class="view">View</a>
+      `;
+    }
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>
-        <div class="title">${escapeHtml(it.title)}</div>
+        <div class="${titleClass}">${escapeHtml(it.title)}</div>
         <div class="meta">${escapeHtml(it.author || '')} • <span class="tag">${escapeHtml(it.tags || it.type || '')}</span> ${escapeHtml(it.desc || '')}</div>
       </td>
       <td>${escapeHtml(it.size || '—')}</td>
       <td>${escapeHtml((it.type||'').toUpperCase())}</td>
       <td>${escapeHtml(it.date || '—')}</td>
       <td class="actions">
-        <a href="${it.url}" target="_blank" rel="noopener">Download</a>
-        <a href="#" data-id="${it.id}" class="view">View</a>
+        ${actionsHtml}
       </td>
     `;
     rows.appendChild(tr);
   }
 
-  // attach view handlers
+  // attach view handlers (only for enabled)
   $$('.view').forEach(a=>{
     a.addEventListener('click', e=>{
       e.preventDefault();
@@ -426,11 +435,18 @@ function openViewer(it){
   modalBody.innerHTML = '';
 
   if(it.type === 'pdf'){
-    // show PDF via iframe — Internet Archive typically serves PDFs directly
+    // show PDF via iframe, remove toolbars if possible
+    let pdfUrl = it.url;
+    if(pdfUrl.indexOf('#') === -1){
+      pdfUrl += '#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
+    }else{
+      pdfUrl += '&toolbar=0&navpanes=0&scrollbar=0&view=FitH';
+    }
     const ifr = document.createElement('iframe');
-    ifr.src = it.url;
+    ifr.src = pdfUrl;
     ifr.className = 'viewer';
     ifr.setAttribute('allowfullscreen','');
+    ifr.setAttribute('title','PDF viewer');
     modalBody.appendChild(ifr);
   } else if(it.type === 'video'){
     // use HTML5 video
@@ -442,7 +458,6 @@ function openViewer(it){
     src.type = 'video/mp4';
     v.appendChild(src);
     modalBody.appendChild(v);
-    // autoplay muted preview if desired: v.play().catch(()=>{})
   } else {
     // show a simple download link
     modalBody.innerHTML = `<div style="padding:18px;color:var(--muted);font-family:var(--mono)">No inline viewer for this file type. <a href="${it.url}" target="_blank" rel="noopener">Open raw</a></div>`;
@@ -462,9 +477,7 @@ function closeModal(){
 
 q.addEventListener('input', render);
 filterType.addEventListener('change', render);
-$('#refresh').addEventListener('click', loadData);
 
-// small helper to avoid XSS via inserted text
 function escapeHtml(s){
   if(!s) return '';
   return String(s).replace(/[&<>"']/g, function(m){
@@ -472,7 +485,6 @@ function escapeHtml(s){
   });
 }
 
-// initial load
 loadData();
 </script>
 </body>
