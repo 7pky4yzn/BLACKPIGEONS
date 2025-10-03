@@ -3,48 +3,48 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BLACKPIGEONS — Archive UI</title>
+<title>BLACKPIGEONS — Archive UI (Pirate‑bay inspired theme)</title>
 <style>
-:root {
-  --bg:#07100b;
-  --panel:#081912;
-  --accent:#35ff6b; /* normal file accent */
-  --muted:#7fbfa0;
-  --error:#ff3b3b; /* red for error files */
-  --glass: rgba(255,255,255,0.03);
-  --mono: "Lucida Console", Monaco, monospace;
-}
-
-html,body{height:100%;margin:0;background:linear-gradient(180deg,#00110a 0%,var(--bg) 60%);color:var(--accent);font-family:var(--mono);}
-.wrap{max-width:1100px;margin:26px auto;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
-header{display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
-.logo{font-family:var(--mono);font-weight:700;font-size:20px;color:var(--accent);display:flex;align-items:center;gap:8px}
-.logo .dot{width:10px;height:10px;background:var(--accent);border-radius:2px;box-shadow:0 0 10px rgba(53,255,107,0.15)}
-.sub{color:var(--muted);font-size:12px}
-.controls{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-input.search{background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:var(--accent);padding:8px 12px;border-radius:6px;outline:none;width:360px}
-select, button.small{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px;border-radius:6px}
-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
-thead th{color:var(--muted);text-align:left;padding:10px 8px;border-bottom:1px dashed rgba(255,255,255,0.03);font-weight:600}
-tbody tr{transition:background .13s}
-tbody tr:hover{background:rgba(255,255,255,0.012)}
-td{padding:10px 8px;border-bottom:1px dashed rgba(255,255,255,0.02)}
-.title{color:var(--accent);font-weight:600}
-.meta{color:var(--muted);font-size:12px}
-.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,0.25);color:var(--muted);font-size:12px;margin-right:6px}
-.actions a{background:rgba(0,0,0,0.25);padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;border:1px solid rgba(255,255,255,0.02)}
-.error{color:var(--error); font-weight:700;}
-footer{color:var(--muted);font-size:12px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,0.02)}
-.badge{padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.02);font-size:12px;color:var(--muted)}
-/* modal */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;padding:20px;z-index:999}
-.card{width:100%;max-width:1100px;background:var(--panel);border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,0.7);overflow:hidden}
-.card .head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.02)}
-.viewer{height:70vh;border:0;width:100%}
-@media (max-width:720px){
-  input.search{width:100%}
-  header{flex-direction:column;align-items:flex-start;gap:8px}
-}
+  :root{
+    --bg:#07100b;
+    --panel:#081912;
+    --accent:#35ff6b;
+    --muted:#7fbfa0;
+    --danger:#ff5b5b;
+    --glass: rgba(255,255,255,0.03);
+    --mono: "Lucida Console", Monaco, monospace;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#00110a 0%,var(--bg) 60%);color:var(--accent);font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  .wrap{max-width:1100px;margin:26px auto;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
+  header{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+  .logo{font-family:var(--mono);font-weight:700;font-size:20px;color:var(--accent);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:10px;height:10px;background:var(--accent);border-radius:2px;box-shadow:0 0 10px rgba(53,255,107,0.15)}
+  .sub{color:var(--muted);font-size:12px}
+  .controls{margin-left:auto;display:flex;gap:8px;align-items:center}
+  input.search{background:var(--glass);border:1px solid rgba(255,255,255,0.04);color:var(--accent);padding:8px 12px;border-radius:6px;outline:none;width:360px}
+  select, button.small{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px;border-radius:6px}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+  thead th{color:var(--muted);text-align:left;padding:10px 8px;border-bottom:1px dashed rgba(255,255,255,0.03);font-weight:600}
+  tbody tr{transition:background .13s}
+  tbody tr:hover{background:rgba(255,255,255,0.012)}
+  td{padding:10px 8px;border-bottom:1px dashed rgba(255,255,255,0.02)}
+  .title{color:var(--accent);font-weight:600}
+  .meta{color:var(--muted);font-size:12px}
+  .tag{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,0.25);color:var(--muted);font-size:12px;margin-right:6px}
+  .actions a{background:rgba(0,0,0,0.25);padding:6px 10px;border-radius:6px;color:var(--muted);text-decoration:none;border:1px solid rgba(255,255,255,0.02)}
+  .seed{color:#b8ffbf;font-weight:700}
+  .leech{color:#ffb3b3;font-weight:700}
+  footer{color:var(--muted);font-size:12px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,0.02)}
+  .badge{padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.02);font-size:12px;color:var(--muted)}
+  /* modal */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;padding:20px;z-index:999}
+  .card{width:100%;max-width:1100px;background:var(--panel);border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,0.7);overflow:hidden}
+  .card .head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.02)}
+  .viewer{height:70vh;border:0;width:100%}
+  @media (max-width:720px){
+    input.search{width:100%}
+    header{flex-direction:column;align-items:flex-start;gap:8px}
+  }
 </style>
 </head>
 <body>
@@ -99,12 +99,41 @@ footer{color:var(--muted);font-size:12px;margin-top:12px;display:flex;justify-co
         <button id="close" class="small">Close</button>
       </div>
     </div>
-    <div id="modalBody" style="background:#000;"></div>
+    <div id="modalBody" style="background:#000;">
+      <!-- iframe / video injected -->
+    </div>
   </div>
 </div>
 
 <script>
-const DATA_SRC = './files.json';
+/*
+  Sample files.json format (place next to index.html or update the fetch path):
+  [
+    {
+      "id":"python-basics",
+      "title":"Python Basics — Notes",
+      "author":"Ishit Singh",
+      "size":"12.4 MB",
+      "type":"pdf",
+      "date":"2025-08-12",
+      "url":"https://archive.org/download/BLACKPIGEONS-PythonBasics/python1.pdf",
+      "desc":"Intro to Python with exercises"
+    },
+    {
+      "id":"algebra-lecture1",
+      "title":"Algebra Lecture 1",
+      "author":"Prof A",
+      "size":"420 MB",
+      "type":"video",
+      "date":"2025-01-05",
+      "url":"https://archive.org/download/BLACKPIGEONS-AlgebraLecture/lecture1.mp4",
+      "desc":"Recorded class, 2h"
+    }
+  ]
+*/
+
+const DATA_SRC = './files.json'; // change if needed
+
 const $ = sel => document.querySelector(sel);
 const $$ = sel => document.querySelectorAll(sel);
 const rows = $('#rows');
@@ -117,10 +146,10 @@ const rawLink = $('#rawLink');
 
 let items = [];
 
+// fallback sample if files.json missing
 const sample = [
-  {"id":"sample-pdf","title":"Sample Public Domain Book","author":"Various","size":"2.1 MB","type":"pdf","date":"2020-05-12","desc":"Public domain sample"},
-  {"id":"sample-video","title":"Sample Lecture","author":"Nobody","size":"120 MB","type":"video","date":"2021-07-01","desc":"Demo video (public domain style)"},
-  {"id":"error-file","title":"Missing File","author":"Unknown","size":"0 MB","type":"pdf","date":"2023-03-01","desc":"Broken link","error":true}
+  {"id":"sample-pdf","title":"Sample Public Domain Book","author":"Various","size":"2.1 MB","type":"pdf","date":"2020-05-12","url":"https://archive.org/download/oliver_twist_0810_librivox/oliver_twist_0810.pdf","desc":"Public domain sample"},
+  {"id":"sample-video","title":"Sample Lecture","author":"Nobody","size":"120 MB","type":"video","date":"2021-07-01","url":"https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4","desc":"Demo video (public domain style)"}
 ];
 
 async function loadData(){
@@ -139,6 +168,7 @@ async function loadData(){
 function render(){
   const query = (q.value || '').trim().toLowerCase();
   const typeF = filterType.value;
+  // simple sort: newest first by date if present
   const sorted = items.slice().sort((a,b)=>{
     if(a.date && b.date) return new Date(b.date) - new Date(a.date);
     return (a.title||'').localeCompare(b.title||'');
@@ -148,25 +178,29 @@ function render(){
   for(const it of sorted){
     if(typeF && it.type !== typeF) continue;
     if(query){
-      const hay = (it.title + ' ' + (it.author||'') + ' ' + (it.desc||'')).toLowerCase();
+      const hay = (it.title + ' ' + (it.author||'') + ' ' + (it.desc||'') + ' ' + (it.tags||'')).toLowerCase();
       if(!hay.includes(query)) continue;
     }
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="title ${it.error?'error':''}">${it.title}</td>
-      <td>${it.size||'—'}</td>
-      <td>${(it.type||'—').toUpperCase()}</td>
-      <td>${it.date||'—'}</td>
+      <td>
+        <div class="title">${escapeHtml(it.title)}</div>
+        <div class="meta">${escapeHtml(it.author || '')} • <span class="tag">${escapeHtml(it.tags || it.type || '')}</span> ${escapeHtml(it.desc || '')}</div>
+      </td>
+      <td>${escapeHtml(it.size || '—')}</td>
+      <td>${escapeHtml((it.type||'').toUpperCase())}</td>
+      <td>${escapeHtml(it.date || '—')}</td>
       <td class="actions">
-        <a href="${it.url}" target="_blank" class="${it.error?'error':''}">Download</a>
-        <a href="#" data-id="${it.id}" class="view ${it.error?'error':''}">View</a>
+        <a href="${it.url}" target="_blank" rel="noopener">Download</a>
+        <a href="#" data-id="${it.id}" class="view">View</a>
       </td>
     `;
     rows.appendChild(tr);
   }
 
+  // attach view handlers
   $$('.view').forEach(a=>{
-    a.addEventListener('click',e=>{
+    a.addEventListener('click', e=>{
       e.preventDefault();
       const id = a.getAttribute('data-id');
       const it = items.find(x=>x.id===id);
@@ -176,33 +210,59 @@ function render(){
 }
 
 function openViewer(it){
-  modalTitle.textContent = it.title;
+  modalTitle.textContent = it.title + ' — ' + (it.author||'');
   rawLink.href = it.url;
+  rawLink.textContent = 'Open raw';
   modalBody.innerHTML = '';
-  if(it.type==='pdf'){
-    const iframe = document.createElement('iframe');
-    iframe.src = it.url;
-    iframe.className='viewer';
-    modalBody.appendChild(iframe);
-  } else if(it.type==='video'){
+
+  if(it.type === 'pdf'){
+    // show PDF via iframe — Internet Archive typically serves PDFs directly
+    const ifr = document.createElement('iframe');
+    ifr.src = it.url;
+    ifr.className = 'viewer';
+    ifr.setAttribute('allowfullscreen','');
+    modalBody.appendChild(ifr);
+  } else if(it.type === 'video'){
+    // use HTML5 video
     const v = document.createElement('video');
-    v.controls=true; v.className='viewer';
+    v.className = 'viewer';
+    v.controls = true;
     const src = document.createElement('source');
-    src.src = it.url; src.type='video/mp4';
+    src.src = it.url;
+    src.type = 'video/mp4';
     v.appendChild(src);
     modalBody.appendChild(v);
+    // autoplay muted preview if desired: v.play().catch(()=>{})
   } else {
-    modalBody.innerHTML=`<div style="padding:18px;color:var(--accent)">No viewer. <a href="${it.url}" target="_blank">Open raw</a></div>`;
+    // show a simple download link
+    modalBody.innerHTML = `<div style="padding:18px;color:var(--muted)">No inline viewer for this file type. <a href="${it.url}" target="_blank" rel="noopener">Open raw</a></div>`;
   }
-  modal.style.display='flex';
+
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden','false');
 }
 
-$('#close').addEventListener('click',()=>{modal.style.display='none'; modalBody.innerHTML='';});
-modal.addEventListener('click',e=>{if(e.target===modal) modal.style.display='none';});
-q.addEventListener('input',render);
-filterType.addEventListener('change',render);
-$('#refresh').addEventListener('click',loadData);
+$('#close').addEventListener('click',()=>closeModal());
+modal.addEventListener('click', e => { if(e.target===modal) closeModal(); });
+function closeModal(){
+  modal.style.display = 'none';
+  modalBody.innerHTML = '';
+  modal.setAttribute('aria-hidden','true');
+}
 
+q.addEventListener('input', render);
+filterType.addEventListener('change', render);
+$('#refresh').addEventListener('click', loadData);
+
+// small helper to avoid XSS via inserted text
+function escapeHtml(s){
+  if(!s) return '';
+  return String(s).replace(/[&<>"']/g, function(m){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]);
+  });
+}
+
+// initial load
 loadData();
 </script>
 </body>
