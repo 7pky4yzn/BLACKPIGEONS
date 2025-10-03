@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
-<title>BLACKPIGEONS — Archive UI (Monochrome, PDF-only Modal, Mobile Optimized, Scalable)</title>
+<title>BLACKPIGEONS — Archive UI (Monochrome, PDF-only Modal, Mobile Scalable, Uncrammed Actions)</title>
 <style id="theme-style">
   :root {
     --bg: #090909;
@@ -258,6 +258,27 @@
     text-decoration:line-through;
   }
   .actions a:first-child {margin-right:0;}
+  /* Stack actions vertically on small screens */
+  @media (max-width: 600px) {
+    .actions {
+      flex-direction: column;
+      gap: 7px;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .actions a,
+    .actions .disabled-btn {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 15px;
+      padding: 10px 0;
+    }
+    td:last-child {
+      min-width: 90px;
+    }
+  }
   footer{
     color:var(--muted);
     font-size:clamp(11px,1.8vw,14px);
@@ -326,14 +347,13 @@
     input.search{width:100%}
     header{flex-direction:column;align-items:flex-start;gap:10px;padding-bottom:12px;}
     .controls{margin-left:0;width:100%;gap:6px;}
-    .actions{gap:6px;}
     .wrap{padding:3vw 1vw;}
     .card{max-width:100vw;}
     table{font-size:12.5px;}
     thead th, td {padding: 8px 4px;}
     .badge{margin-right: 0;}
     .title{font-size:13px;}
-    .actions a, .actions .disabled-btn{padding:7px 7px;min-width:55px;}
+    .actions a, .actions .disabled-btn{padding:7px 7px;}
     .logo{font-size:15px;}
     main{margin-bottom:10px;}
     .viewer{min-height:60vh;}
