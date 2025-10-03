@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BLACKPIGEONS — Archive UI (Monochrome, PDF-only Modal)</title>
+<title>BLACKPIGEONS — Archive UI (Monochrome, PDF-only Modal, Mobile Optimized)</title>
 <style id="theme-style">
   :root {
     --bg: #090909;
@@ -42,6 +42,9 @@
     font-size:16px;
     letter-spacing:0.01em;
     transition: background .35s, color .18s;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    touch-action: manipulation;
   }
   .wrap {
     max-width:1100px;
@@ -73,6 +76,7 @@
     letter-spacing:0.04em;
     user-select:none;
     padding-bottom: 3px;
+    word-break: break-word;
   }
   .logo .dot {
     width:13px;
@@ -82,6 +86,7 @@
     box-shadow:0 0 10px #4444;
     opacity: 0.8;
     margin-right:3px;
+    flex-shrink: 0;
   }
   .sub {
     color:var(--muted);
@@ -89,6 +94,7 @@
     font-family:var(--mono);
     margin-left: 2px;
     margin-bottom: 3px;
+    word-break: break-word;
   }
   .controls {
     margin-left:auto;
@@ -108,6 +114,7 @@
     font-family:var(--mono);
     font-size:16px;
     transition:border-color .13s, background .13s;
+    max-width: 100vw;
   }
   input.search:focus {
     border-color:var(--accent);
@@ -124,6 +131,7 @@
     transition:border-color .13s;
     cursor:pointer;
     min-width:120px;
+    max-width:100vw;
   }
   select:focus {
     border-color:var(--accent);
@@ -143,7 +151,8 @@
     background:transparent;
     box-shadow: 0 2px 18px #0003;
     border-radius:var(--radius);
-    overflow: hidden;
+    overflow-x: auto;
+    word-break:break-word;
   }
   thead th {
     color:var(--muted);
@@ -155,6 +164,7 @@
     font-size:15px;
     font-family:var(--mono);
     letter-spacing: 0.01em;
+    white-space: nowrap;
   }
   tbody tr {
     transition:background .13s;
@@ -169,6 +179,9 @@
     vertical-align:middle;
     background:transparent;
     font-family:var(--mono);
+    word-break:break-word;
+    max-width: 99vw;
+    font-size: 15px;
   }
   .title {
     color:var(--accent);
@@ -202,6 +215,7 @@
     margin-right:9px;
     font-family:var(--mono);
     margin-bottom: 1px;
+    word-break: break-word;
   }
   .actions {
     display: flex;
@@ -212,6 +226,7 @@
     height: 100%;
     padding: 0;
     margin: 0;
+    flex-wrap: wrap;
   }
   .actions a,
   .actions .disabled-btn {
@@ -232,6 +247,7 @@
     transition: background .13s, color .13s, border-color .13s;
     font-weight: 700;
     letter-spacing: 0.01em;
+    word-break: break-word;
   }
   .actions a:hover{
     background:var(--action-hover);
@@ -260,6 +276,8 @@
     font-family:var(--mono);
     background: transparent;
     gap: 15px;
+    flex-wrap: wrap;
+    word-break:break-word;
   }
   .badge{
     padding:var(--badge-pad);
@@ -269,6 +287,7 @@
     color:var(--muted);
     font-family:var(--mono);
     margin-right: 12px;
+    word-break: break-word;
   }
   .modal{
     position:fixed;inset:0;background:var(--modal-bg);display:none;align-items:center;justify-content:center;padding:0;z-index:999;
@@ -295,20 +314,43 @@
   }
   @media (max-width:1100px){
     .wrap {padding:14px 2vw;}
-    .card{max-width:99vw;}
+    .card{max-width:100vw;}
     .badge{margin-right: 3px;}
+    table{font-size:15px;}
+  }
+  @media (max-width:900px){
+    .wrap {padding:8px 1vw;}
+    .card{max-width:100vw;}
+    .controls{gap:8px;}
+    .logo{font-size:19px;}
+    .title{font-size:15px;}
+    input.search, select{font-size:15px;}
+    .actions a, .actions .disabled-btn{font-size:14px;}
+    table{font-size:13.5px;}
   }
   @media (max-width:720px){
     input.search{width:100%}
     header{flex-direction:column;align-items:flex-start;gap:10px;padding-bottom:12px;}
-    .controls{margin-left:0;}
-    .actions{gap:7px;}
-    .wrap{padding:8px 1vw;}
-    .card{max-width:99vw;}
-    table{font-size:13px;}
+    .controls{margin-left:0;width:100%;gap:6px;}
+    .actions{gap:6px;}
+    .wrap{padding:6px 0.5vw;}
+    .card{max-width:100vw;}
+    table{font-size:12.5px;}
+    thead th, td {padding: 8px 4px;}
     .badge{margin-right: 0;}
-    .title{font-size:14px;}
-    .actions a, .actions .disabled-btn{padding:8px 8px;min-width:65px;}
+    .title{font-size:13px;}
+    .actions a, .actions .disabled-btn{padding:7px 7px;min-width:55px;}
+    .logo{font-size:15px;}
+    main{margin-bottom:10px;}
+    .viewer{min-height:60vh;}
+  }
+  @media (max-width:500px){
+    .wrap{padding:0 0.5vw;}
+    .badge{font-size:12px;}
+    .logo{font-size:14px;}
+    .title{font-size:12px;}
+    .actions a, .actions .disabled-btn{font-size:12px;padding:6px 4px;}
+    table{font-size:12px;}
   }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -458,17 +500,19 @@ function openViewer(it){
     ifr.src = it.url;
     ifr.className = 'viewer';
     ifr.setAttribute('allowfullscreen','');
-    ifr.setAttribute('style', 'width:100vw;height:100vh;min-height:520px;max-height:100vh;border:0;background:#111;display:block;');
+    ifr.setAttribute('style', 'width:100vw;height:100vh;min-height:60vh;max-height:100vh;border:0;background:#111;display:block;');
     modalBody.appendChild(ifr);
     modal.style.background = "#111";
     modal.style.display = 'flex';
     modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = "hidden";
   } else {
     // fallback: show fallback modal for non-pdf
     modalBody.innerHTML = `<div style="padding:18px;color:var(--muted)">No inline viewer for this file type. <a href="${it.url}" target="_blank" rel="noopener">Open raw</a></div>`;
     modal.style.background = "var(--modal-bg)";
     modal.style.display = 'flex';
     modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = "hidden";
   }
 }
 
@@ -480,6 +524,7 @@ function closeModal(){
   modal.style.display = 'none';
   modalBody.innerHTML = '';
   modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = "";
 }
 
 q.addEventListener('input', render);
