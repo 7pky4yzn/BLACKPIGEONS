@@ -3,10 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BLACKPIGEONS — Archive UI (Mono, Depth, Light/Dark, Optimal Layout)</title>
+<title>BLACKPIGEONS</title>
 <style id="theme-style">
   :root {
-    /* Dark mode variables */
     --bg: #080b12;
     --panel: #10131c;
     --accent: #f6faff;
@@ -372,9 +371,6 @@
 <div class="wrap">
   <header>
     <div class="logo"><span class="dot"></span> BLACKPIGEONS</div>
-    <div>
-      <div class="sub">Archive UI — retro listing • For legal/public-domain content only</div>
-    </div>
     <div class="controls">
       <input id="q" class="search" placeholder="Search title, author, tag..." />
       <select id="filterType" title="Filter type">
@@ -408,8 +404,8 @@
   </main>
 
   <footer>
-    <div class="badge">Serve only files you own or are public domain / CC</div>
-    <div class="sub">Built for GitHub Pages • Internet Archive friendly</div>
+    <div class="badge">⭐️ If you find this useful, please star this repo!</div>
+    <div class="sub"></div>
   </footer>
 </div>
 
@@ -580,7 +576,6 @@ function setTheme(mode) {
     localStorage.setItem('theme', 'dark');
   }
 }
-// Detect preferred theme
 (function(){
   let theme = localStorage.getItem('theme');
   if (!theme) {
@@ -592,7 +587,6 @@ themeToggle.addEventListener('click', function() {
   setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 });
 
-// small helper to avoid XSS via inserted text
 function escapeHtml(s){
   if(!s) return '';
   return String(s).replace(/[&<>"']/g, function(m){
@@ -600,7 +594,6 @@ function escapeHtml(s){
   });
 }
 
-// initial load
 loadData();
 </script>
 </body>
