@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
-<title>BLACKPIGEONS — Archive UI (AMOLED Black Monochrome)</title>
+<title>BLACKPIGEONS — Archive UI (AMOLED Black Monochrome, Wide, Fixed Buttons)</title>
 <style id="theme-style">
   :root {
     --bg: #000;
@@ -26,15 +26,15 @@
     --action-hover: #fff;
     --action-hover-text: #111;
     --radius: 16px;
-    --gap: 26px;
-    --pad-main: clamp(18px, 5vw, 54px);
-    --pad-table-cell: clamp(16px, 4vw, 32px);
+    --gap: 18px;
+    --pad-main: clamp(18px, 6vw, 54px);
+    --pad-table-cell: clamp(14px, 3vw, 34px);
     --pad-header: 32px;
     --pad-footer: 24px;
     --badge-pad: 10px 22px;
-    --max-width: 1240px;
-    --min-font-size: 13.5px;
-    --max-font-size: 17px;
+    --max-width: 1600px;
+    --min-font-size: 13px;
+    --max-font-size: 16px;
     --gradient: linear-gradient(90deg, #000 0%, #131313 100%);
   }
   html,body {
@@ -164,9 +164,9 @@
     table-layout: auto;
   }
   thead th, td {
-    padding:var(--pad-table-cell) clamp(18px,4vw,36px);
+    padding:var(--pad-table-cell) clamp(18px,4vw,48px);
     min-width:70px;
-    max-width:420px;
+    max-width:520px;
     word-break:break-word;
   }
   thead th {
@@ -233,7 +233,7 @@
   .actions {
     display: flex;
     flex-direction: row;
-    gap: clamp(15px, 2vw, 24px);
+    gap: clamp(16px, 2vw, 32px);
     align-items: center;
     justify-content: flex-start;
     height: 100%;
@@ -244,7 +244,7 @@
   .actions a,
   .actions .disabled-btn {
     background:var(--action-bg);
-    padding:clamp(11px,1.5vw,16px) clamp(24px,2vw,32px);
+    padding:clamp(11px,1.5vw,16px) clamp(28px,2vw,38px);
     border-radius:8px;
     color:var(--muted);
     text-decoration:none;
@@ -255,7 +255,7 @@
     box-sizing: border-box;
     font-family:var(--mono);
     font-size:clamp(13px,2vw,16px);
-    min-width: 94px;
+    min-width: 110px;
     text-align: center;
     transition: background .13s, color .13s, border-color .13s;
     font-weight: 700;
@@ -264,6 +264,7 @@
     background: var(--action-bg);
     border: 1.5px solid var(--input-border);
     box-shadow: 0 1px 4px #0002;
+    /* Fix: Keep them on the same row */
   }
   .actions a:hover{
     background: var(--action-hover);
@@ -280,10 +281,16 @@
     text-decoration:line-through;
   }
   .actions a:first-child {margin-right:0;}
+  @media (max-width: 900px) {
+    .wrap {padding:4vw 2vw;}
+    .actions {gap: 10px;}
+    .actions a, .actions .disabled-btn {min-width: 90px;}
+    thead th, td {padding: 12px 8px;}
+  }
   @media (max-width: 600px) {
     .actions {
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
       align-items: stretch;
       justify-content: center;
       flex-wrap: nowrap;
@@ -294,11 +301,11 @@
       min-width: 0;
       box-sizing: border-box;
       text-align: center;
-      font-size: 16px;
-      padding: 13px 0;
+      font-size: 15px;
+      padding: 10px 0;
     }
     td:last-child {
-      min-width: 100px;
+      min-width: 90px;
     }
     .wrap, main, header, footer, table { padding-left: 3vw; padding-right: 3vw;}
   }
@@ -369,47 +376,6 @@
     background:#000;
     display:block;
     max-height:65vh;
-  }
-  @media (max-width:1100px){
-    .wrap {padding:8vw 3vw;}
-    .card{max-width:100vw;}
-    .badge{margin-right: 3px;}
-    table{font-size:16px;}
-  }
-  @media (max-width:900px){
-    .wrap {padding:5vw 2vw;}
-    .card{max-width:100vw;}
-    .controls{gap:18px;}
-    .logo{font-size:21px;}
-    .title{font-size:17px;}
-    input.search, select{font-size:16px;}
-    .actions a, .actions .disabled-btn{font-size:15px;}
-    table{font-size:15px;}
-  }
-  @media (max-width:720px){
-    input.search{width:100%}
-    header{flex-direction:column;align-items:flex-start;gap:18px;padding-bottom:18px;}
-    .controls{margin-left:0;width:100%;gap:13px;}
-    .wrap{padding:3vw 1vw;}
-    .card{max-width:99vw;}
-    table{font-size:13.5px;}
-    thead th, td {padding: 12px 8px;}
-    .badge{margin-right: 0;}
-    .title{font-size:14px;}
-    .actions a, .actions .disabled-btn{padding:10px 10px;}
-    .logo{font-size:17px;}
-    main{margin-bottom:18px;}
-    .viewer{min-height:120px;}
-  }
-  @media (max-width:500px){
-    .wrap{padding:2vw 0.5vw;}
-    .badge{font-size:13px;}
-    .logo{font-size:15px;}
-    .title{font-size:13px;}
-    .actions a, .actions .disabled-btn{font-size:13px;padding:8px 6px;}
-    table{font-size:12.5px;}
-    .card {min-height:180px;}
-    .viewer{min-height:80px;}
   }
   body, html {
     height: 100%;
