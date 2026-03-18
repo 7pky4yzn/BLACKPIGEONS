@@ -1,0 +1,5 @@
+{
+  "name": "Archive Listings",
+  "description": "A 3-column archive listing with hover selection effects using GSAP and Framer Motion.",
+  "requestFramePermissions": []
+}

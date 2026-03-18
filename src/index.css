@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  background-color: #000000;
+  color: #f5f5f7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
+}
+
+.atmosphere {
+  background: radial-gradient(circle at 50% -20%, rgba(255,255,255,0.03) 0%, transparent 50%);
+}
+
+.progressive-blur {
+    --blur-strength: 40px; /* Change this to change the blur strength */
+    height: 80px; /* Change this to change the blur distance */
+    z-index: 50; /* Positive value to be above content */
+
+    position: fixed; /* Fixed to stay at the top of viewport */
+    pointer-events: none;
+
+    top: 0;
+    bottom: auto;
+    left: 0;
+    right: 0;
+}
+.progressive-blur > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.progressive-blur > div:nth-child(1) {
+    z-index: 7;
+    backdrop-filter: blur(calc(var(--blur-strength) / 64));
+    mask: linear-gradient(to bottom, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+}
+.progressive-blur > div:nth-child(2) {
+    z-index: 6;
+    backdrop-filter: blur(calc(var(--blur-strength) / 32));
+    mask: linear-gradient(to bottom, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 95%);
+    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 95%);
+}
+.progressive-blur > div:nth-child(3) {
+    z-index: 5;
+    backdrop-filter: blur(calc(var(--blur-strength) / 16));
+    mask: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+}
+.progressive-blur > div:nth-child(4) {
+    z-index: 4;
+    backdrop-filter: blur(calc(var(--blur-strength) / 8));
+    mask: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 80%);
+    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 80%);
+}
+.progressive-blur > div:nth-child(5) {
+    z-index: 3;
+    backdrop-filter: blur(calc(var(--blur-strength) / 4));
+    mask: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 60%);
+    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 60%);
+}
+.progressive-blur > div:nth-child(6) {
+    z-index: 2;
+    backdrop-filter: blur(calc(var(--blur-strength) / 2));
+    mask: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 40%);
+    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 40%);
+}
+.progressive-blur > div:nth-child(7) {
+    z-index: 1;
+    backdrop-filter: blur(calc(var(--blur-strength) / 1));
+    mask: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 20%);
+    -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 20%);
+}
+
+.progressive-blur-bottom {
+    --blur-strength: 40px; /* Change this to change the blur strength */
+    height: 80px; /* Change this to change the blur distance */
+    z-index: 50; /* Positive value to be above content */
+
+    position: fixed; /* Fixed to stay at the bottom of viewport */
+    pointer-events: none;
+
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.progressive-blur-bottom > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.progressive-blur-bottom > div:nth-child(1) {
+    z-index: 7;
+    backdrop-filter: blur(calc(var(--blur-strength) / 64));
+    mask: linear-gradient(to top, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+    -webkit-mask: linear-gradient(to top, rgba(0,0,0,1) 95%, rgba(0,0,0,0) 100%);
+}
+.progressive-blur-bottom > div:nth-child(2) {
+    z-index: 6;
+    backdrop-filter: blur(calc(var(--blur-strength) / 32));
+    mask: linear-gradient(to top, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 95%);
+    -webkit-mask: linear-gradient(to top, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 95%);
+}
+.progressive-blur-bottom > div:nth-child(3) {
+    z-index: 5;
+    backdrop-filter: blur(calc(var(--blur-strength) / 16));
+    mask: linear-gradient(to top, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+    -webkit-mask: linear-gradient(to top, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+}
+.progressive-blur-bottom > div:nth-child(4) {
+    z-index: 4;
+    backdrop-filter: blur(calc(var(--blur-strength) / 8));
+    mask: linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 80%);
+    -webkit-mask: linear-gradient(to top, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 80%);
+}
+.progressive-blur-bottom > div:nth-child(5) {
+    z-index: 3;
+    backdrop-filter: blur(calc(var(--blur-strength) / 4));
+    mask: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 60%);
+    -webkit-mask: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 60%);
+}
+.progressive-blur-bottom > div:nth-child(6) {
+    z-index: 2;
+    backdrop-filter: blur(calc(var(--blur-strength) / 2));
+    mask: linear-gradient(to top, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 40%);
+    -webkit-mask: linear-gradient(to top, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 40%);
+}
+.progressive-blur-bottom > div:nth-child(7) {
+    z-index: 1;
+    backdrop-filter: blur(calc(var(--blur-strength) / 1));
+    mask: linear-gradient(to top, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 20%);
+    -webkit-mask: linear-gradient(to top, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 20%);
+}
+
+/* Aggressively hide scrollbar for all elements */
+* {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari and Opera */
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.GlassContainer {
+    --corner-radius: 24px;
+    --base-strength: 14px;
+    --extra-blur: 2px;
+    --softness: 12px;
+    --tint-amount: 0;
+    --tint-saturation: 2;
+    --tint-hue: 180deg;
+    --contrast: 1;
+    --brightness: 1;
+    --invert: 10%;
+
+    --total-strength: calc(var(--base-strength) + var(--extra-blur));
+    --edge-width: calc(0.3px + (var(--softness) * 0.1));
+    --emboss-width: calc((var(--softness) * 0.38));
+    --refraction-width: calc((var(--softness) * 0.3));
+
+    position: relative;
+    overflow: visible;
+    pointer-events: none;
+}
+.GlassContent {
+    position: relative;
+    display: block;
+    z-index: 100;
+    overflow: hidden;
+    border-radius: var(--corner-radius);
+    pointer-events: auto;
+}
+.GlassMaterial {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: visible;
+    pointer-events: none;
+}
+.GlassMaterial:after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    overflow: hidden;
+    border-radius: var(--corner-radius);
+    background-color: rgba(128, 128, 128, 0);
+}
+.GlassMaterial > div {
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    border-radius: var(--corner-radius);
+    z-index: 2;
+    overflow: hidden;
+}
+.GlassMaterial .GlassEdgeReflection {
+    z-index: 4;
+    margin: calc(var(--total-strength) * -1);
+    border-radius: calc(var(--corner-radius) + var(--total-strength));
+    backdrop-filter: blur(var(--total-strength)) brightness(1.2) saturate(1.2);
+    padding: var(--edge-width);
+    border: var(--total-strength) solid transparent;
+    mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    -webkit-mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    mask-composite: exclude, exclude;
+    -webkit-mask-composite: xor;
+}
+.GlassMaterial .GlassEmbossReflection {
+    backdrop-filter: blur(calc(var(--total-strength) * 1.5)) invert(0.25) brightness(1.11) saturate(1.2) hue-rotate(-10deg) contrast(2.3);
+    padding: var(--emboss-width);
+    border: 0 solid transparent;
+    mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    -webkit-mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    mask-composite: exclude, exclude;
+    -webkit-mask-composite: xor;
+}
+.GlassMaterial .GlassRefraction {
+    backdrop-filter: invert(0.1) brightness(1.2) contrast(1.5);
+    padding: var(--refraction-width);
+    border: calc(var(--emboss-width)) solid transparent;
+    mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    -webkit-mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    mask-composite: exclude, exclude;
+    -webkit-mask-composite: xor;
+}
+.GlassMaterial .GlassBlur {
+    backdrop-filter: blur(var(--extra-blur)) brightness(1.25);
+    border-radius: calc(var(--corner-radius) - (var(--emboss-width) + var(--refraction-width)));
+    margin: calc(var(--emboss-width) + var(--refraction-width));
+}
+.GlassMaterial .BlendLayers {
+    z-index: 3;
+    backdrop-filter: blur(calc((var(--softness) * 0.2) + (var(--extra-blur) * 0.2)));
+}
+.GlassMaterial .BlendEdge {
+    z-index: 8;
+    backdrop-filter: blur(calc(var(--edge-width) * 0.4)) contrast(1.6) saturate(1.5);
+}
+.GlassContainer:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: block;
+    border-radius: var(--corner-radius);
+    backdrop-filter: invert(var(--invert));
+}
+.GlassMaterial:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 11;
+    display: block;
+    border-radius: var(--corner-radius);
+    padding: 1px;
+    border: 0 solid transparent;
+    background: linear-gradient(155deg, hsla(0, 0%, 100%, 0.15) 0%, hsla(0, 0%, 0%, 0.2) 50%, hsla(0, 0%, 100%, 0.15) 100%);
+    backdrop-filter: invert(0.15) opacity(1);
+    mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    -webkit-mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    mask-composite: exclude, exclude;
+    -webkit-mask-composite: xor;
+}
+.GlassMaterial .Highlight {
+    z-index: 12;
+    display: block;
+    border-radius: var(--corner-radius);
+    padding: 1px;
+    border: 0 solid transparent;
+    backdrop-filter: brightness(1.2) contrast(1.6) saturate(1.2) opacity(1);
+    mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    -webkit-mask: 
+        linear-gradient(white 0 0) padding-box,
+        linear-gradient(white 0 0) content-box;
+    mask-composite: exclude, exclude;
+    -webkit-mask-composite: xor;
+}
